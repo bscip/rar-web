@@ -1,0 +1,87 @@
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/space-grotesk/400.css';
+@import '@fontsource/space-grotesk/500.css';
+@import '@fontsource/space-grotesk/600.css';
+@import '@fontsource/space-grotesk/700.css';
+@import '@mantine/core/styles.css';
+
+:root {
+  --rar-bg: #0d0f10;
+  --rar-panel: #1a1c1e;
+  --rar-panel-alt: #23262a;
+  --rar-border: rgba(255, 255, 255, 0.07);
+  --rar-border-strong: rgba(255, 255, 255, 0.12);
+  --rar-amber: #e4a600;
+  --rar-flame: #ff3c00;
+  --rar-denim: #5c8db5;
+  --rar-charcoal: #4b4f54;
+  --rar-silver: #aeaeae;
+  --rar-text: #ffffff;
+  --rar-text-dim: rgba(255, 255, 255, 0.65);
+  --rar-text-muted: rgba(255, 255, 255, 0.45);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--rar-bg);
+  color: var(--rar-text);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+/* Panel / card surface primitive */
+.rar-panel {
+  background-color: var(--rar-panel);
+  border: 1px solid var(--rar-border);
+  border-radius: 8px;
+}
+
+/* Subtle grid overlay for visual texture */
+.rar-grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Amber accent underline for section labels */
+.rar-label {
+  display: inline-block;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rar-amber);
+}
+
+/* Card hover lift */
+.rar-card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.rar-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Divider with amber accent */
+.rar-accent-line {
+  width: 48px;
+  height: 3px;
+  background-color: var(--rar-amber);
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}

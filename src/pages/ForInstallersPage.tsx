@@ -135,7 +135,7 @@ export function ForInstallersPage() {
                 {step.number}
               </Box>
               <Box>
-                <Text fw={600} mb={4} style={{ color: 'white', fontFamily: 'Space Grotesk, sans-serif' }}>
+                <Text fw={600} mb={4} style={{ color: 'var(--rar-text)', fontFamily: 'Space Grotesk, sans-serif' }}>
                   {step.title}
                 </Text>
                 <Text size="sm" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.65 }}>

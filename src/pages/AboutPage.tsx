@@ -115,13 +115,13 @@ export function AboutPage() {
                   fontFamily: 'Space Grotesk, sans-serif',
                   fontSize: rem(40),
                   fontWeight: 700,
-                  color: 'rgba(228,166,0,0.2)',
+                  color: 'rgba(228,166,0,0.35)',
                   lineHeight: 1,
                 }}
               >
                 {step.number}
               </Box>
-              <Text fw={600} mb="sm" size="md" style={{ color: 'white', fontFamily: 'Space Grotesk, sans-serif' }}>
+              <Text fw={600} mb="sm" size="md" style={{ color: 'var(--rar-text)', fontFamily: 'Space Grotesk, sans-serif' }}>
                 {step.title}
               </Text>
               <Text size="sm" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.7 }}>

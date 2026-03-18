@@ -13,7 +13,7 @@ const amber: MantineColorsTuple = [
   '#ffe499',
   '#ffd966',
   '#f5c333',
-  '#e4a600', // [5] — Amber Honey primary
+  '#e4a600', // [5] — primary
   '#c98f00',
   '#a37200',
   '#7d5800',
@@ -26,7 +26,7 @@ const flame: MantineColorsTuple = [
   '#ffbba8',
   '#ff9478',
   '#ff6040',
-  '#ff3c00', // [5] — Blazing Flame
+  '#ff3c00', // [5]
   '#d93400',
   '#b32b00',
   '#8c2200',
@@ -39,26 +39,11 @@ const denim: MantineColorsTuple = [
   '#b5cde3',
   '#90b3d3',
   '#6e99c2',
-  '#5c8db5', // [5] — Dusty Denim
-  '#4d7ba0',
-  '#3d6289',
-  '#2e4b6b',
-  '#1e324d',
-];
-
-// Dark surface palette — remapped for RAR
-// dark[9] = body background, dark[7] = panel surface
-const dark: MantineColorsTuple = [
-  '#c9cdd2',  // [0] lightest
-  '#9ea4ab',
-  '#747c85',
-  '#4b4f54', // [3] Charcoal
-  '#393d42',
-  '#2c2f33',
-  '#23262a',  // [6] panelAlt
-  '#1a1c1e',  // [7] panel
-  '#141618',
-  '#0d0f10',  // [9] background
+  '#4a7ba0', // [5] — slightly deeper for light bg readability
+  '#3d6a8c',
+  '#2e5270',
+  '#1f3b54',
+  '#112438',
 ];
 
 export const theme = createTheme({
@@ -78,7 +63,7 @@ export const theme = createTheme({
   },
 
   // Palette
-  colors: { amber, flame, denim, dark },
+  colors: { amber, flame, denim },
   primaryColor: 'amber',
   primaryShade: 5,
 
@@ -114,38 +99,10 @@ export const theme = createTheme({
         },
       },
     },
-    Title: {
-      styles: {
-        root: {
-          color: 'var(--mantine-color-white)',
-        },
-      },
-    },
     Card: {
       defaultProps: {
         radius: 'md',
         padding: 'xl',
-      },
-      styles: {
-        root: {
-          backgroundColor: 'var(--mantine-color-dark-7)',
-          borderColor: 'rgba(255, 255, 255, 0.07)',
-        },
-      },
-    },
-    Paper: {
-      styles: {
-        root: {
-          backgroundColor: 'var(--mantine-color-dark-7)',
-          borderColor: 'rgba(255, 255, 255, 0.07)',
-        },
-      },
-    },
-    Divider: {
-      styles: {
-        root: {
-          borderColor: 'rgba(255, 255, 255, 0.08)',
-        },
       },
     },
     Badge: {

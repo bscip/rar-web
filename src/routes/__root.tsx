@@ -1,6 +1,5 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router';
-import { MantineProvider } from '@mantine/core';
-import { Box } from '@mantine/core';
+import { MantineProvider, Box } from '@mantine/core';
 import { theme } from '../styles/theme';
 import { SiteHeader } from '../components/site/SiteHeader';
 import { SiteFooter } from '../components/site/SiteFooter';
@@ -14,7 +13,7 @@ export const Route = createRootRoute({
 
 function Root() {
   return (
-    <MantineProvider theme={theme} forceColorScheme="dark" defaultColorScheme="dark">
+    <MantineProvider theme={theme} defaultColorScheme="light">
       <Outlet />
     </MantineProvider>
   );

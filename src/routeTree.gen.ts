@@ -14,8 +14,8 @@ import { Route as MarketingIndexRouteImport } from './routes/_marketing/index'
 import { Route as MarketingTermsRouteImport } from './routes/_marketing/terms'
 import { Route as MarketingTeamRouteImport } from './routes/_marketing/team'
 import { Route as MarketingPrivacyRouteImport } from './routes/_marketing/privacy'
+import { Route as MarketingPartnersRouteImport } from './routes/_marketing/partners'
 import { Route as MarketingInstallationsRouteImport } from './routes/_marketing/installations'
-import { Route as MarketingForInvestorsRouteImport } from './routes/_marketing/for-investors'
 import { Route as MarketingForInstallersRouteImport } from './routes/_marketing/for-installers'
 import { Route as MarketingContactRouteImport } from './routes/_marketing/contact'
 import { Route as MarketingAboutRouteImport } from './routes/_marketing/about'
@@ -44,14 +44,14 @@ const MarketingPrivacyRoute = MarketingPrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => MarketingRoute,
 } as any)
+const MarketingPartnersRoute = MarketingPartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => MarketingRoute,
+} as any)
 const MarketingInstallationsRoute = MarketingInstallationsRouteImport.update({
   id: '/installations',
   path: '/installations',
-  getParentRoute: () => MarketingRoute,
-} as any)
-const MarketingForInvestorsRoute = MarketingForInvestorsRouteImport.update({
-  id: '/for-investors',
-  path: '/for-investors',
   getParentRoute: () => MarketingRoute,
 } as any)
 const MarketingForInstallersRoute = MarketingForInstallersRouteImport.update({
@@ -75,8 +75,8 @@ export interface FileRoutesByFullPath {
   '/about': typeof MarketingAboutRoute
   '/contact': typeof MarketingContactRoute
   '/for-installers': typeof MarketingForInstallersRoute
-  '/for-investors': typeof MarketingForInvestorsRoute
   '/installations': typeof MarketingInstallationsRoute
+  '/partners': typeof MarketingPartnersRoute
   '/privacy': typeof MarketingPrivacyRoute
   '/team': typeof MarketingTeamRoute
   '/terms': typeof MarketingTermsRoute
@@ -85,8 +85,8 @@ export interface FileRoutesByTo {
   '/about': typeof MarketingAboutRoute
   '/contact': typeof MarketingContactRoute
   '/for-installers': typeof MarketingForInstallersRoute
-  '/for-investors': typeof MarketingForInvestorsRoute
   '/installations': typeof MarketingInstallationsRoute
+  '/partners': typeof MarketingPartnersRoute
   '/privacy': typeof MarketingPrivacyRoute
   '/team': typeof MarketingTeamRoute
   '/terms': typeof MarketingTermsRoute
@@ -98,8 +98,8 @@ export interface FileRoutesById {
   '/_marketing/about': typeof MarketingAboutRoute
   '/_marketing/contact': typeof MarketingContactRoute
   '/_marketing/for-installers': typeof MarketingForInstallersRoute
-  '/_marketing/for-investors': typeof MarketingForInvestorsRoute
   '/_marketing/installations': typeof MarketingInstallationsRoute
+  '/_marketing/partners': typeof MarketingPartnersRoute
   '/_marketing/privacy': typeof MarketingPrivacyRoute
   '/_marketing/team': typeof MarketingTeamRoute
   '/_marketing/terms': typeof MarketingTermsRoute
@@ -112,8 +112,8 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/for-installers'
-    | '/for-investors'
     | '/installations'
+    | '/partners'
     | '/privacy'
     | '/team'
     | '/terms'
@@ -122,8 +122,8 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/for-installers'
-    | '/for-investors'
     | '/installations'
+    | '/partners'
     | '/privacy'
     | '/team'
     | '/terms'
@@ -134,8 +134,8 @@ export interface FileRouteTypes {
     | '/_marketing/about'
     | '/_marketing/contact'
     | '/_marketing/for-installers'
-    | '/_marketing/for-investors'
     | '/_marketing/installations'
+    | '/_marketing/partners'
     | '/_marketing/privacy'
     | '/_marketing/team'
     | '/_marketing/terms'
@@ -183,18 +183,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketingPrivacyRouteImport
       parentRoute: typeof MarketingRoute
     }
+    '/_marketing/partners': {
+      id: '/_marketing/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof MarketingPartnersRouteImport
+      parentRoute: typeof MarketingRoute
+    }
     '/_marketing/installations': {
       id: '/_marketing/installations'
       path: '/installations'
       fullPath: '/installations'
       preLoaderRoute: typeof MarketingInstallationsRouteImport
-      parentRoute: typeof MarketingRoute
-    }
-    '/_marketing/for-investors': {
-      id: '/_marketing/for-investors'
-      path: '/for-investors'
-      fullPath: '/for-investors'
-      preLoaderRoute: typeof MarketingForInvestorsRouteImport
       parentRoute: typeof MarketingRoute
     }
     '/_marketing/for-installers': {
@@ -225,8 +225,8 @@ interface MarketingRouteChildren {
   MarketingAboutRoute: typeof MarketingAboutRoute
   MarketingContactRoute: typeof MarketingContactRoute
   MarketingForInstallersRoute: typeof MarketingForInstallersRoute
-  MarketingForInvestorsRoute: typeof MarketingForInvestorsRoute
   MarketingInstallationsRoute: typeof MarketingInstallationsRoute
+  MarketingPartnersRoute: typeof MarketingPartnersRoute
   MarketingPrivacyRoute: typeof MarketingPrivacyRoute
   MarketingTeamRoute: typeof MarketingTeamRoute
   MarketingTermsRoute: typeof MarketingTermsRoute
@@ -237,8 +237,8 @@ const MarketingRouteChildren: MarketingRouteChildren = {
   MarketingAboutRoute: MarketingAboutRoute,
   MarketingContactRoute: MarketingContactRoute,
   MarketingForInstallersRoute: MarketingForInstallersRoute,
-  MarketingForInvestorsRoute: MarketingForInvestorsRoute,
   MarketingInstallationsRoute: MarketingInstallationsRoute,
+  MarketingPartnersRoute: MarketingPartnersRoute,
   MarketingPrivacyRoute: MarketingPrivacyRoute,
   MarketingTeamRoute: MarketingTeamRoute,
   MarketingTermsRoute: MarketingTermsRoute,

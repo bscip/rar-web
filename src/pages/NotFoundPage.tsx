@@ -11,8 +11,8 @@ export function NotFoundPage() {
             fw={700}
             style={{
               fontFamily: 'Space Grotesk, sans-serif',
-              fontSize: '6rem',
-              color: 'var(--rar-amber)',
+                fontSize: '6rem',
+                color: 'var(--rar-text-muted)',
               lineHeight: 1,
             }}
           >

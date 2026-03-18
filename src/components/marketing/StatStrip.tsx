@@ -9,7 +9,7 @@ export function StatStrip({ stats }: StatStripProps) {
   return (
     <Box
       style={{
-        backgroundColor: 'var(--rar-panel)',
+        backgroundColor: 'var(--rar-bg)',
         border: '1px solid var(--rar-border)',
         borderRadius: 12,
         padding: `${rem(28)} ${rem(32)}`,

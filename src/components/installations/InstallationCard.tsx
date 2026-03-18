@@ -5,16 +5,16 @@ interface InstallationCardProps {
   installation: Installation;
 }
 
-const STATUS_COLOR: Record<string, string> = {
-  Planning: 'rgba(92, 141, 181, 0.2)',
-  'In Progress': 'rgba(228, 166, 0, 0.2)',
-  Completed: 'rgba(92, 181, 120, 0.2)',
-  Placeholder: 'rgba(255, 255, 255, 0.05)',
+const STATUS_BG: Record<string, string> = {
+  Planning: 'rgba(255,60,0,0.08)',
+  'In Progress': 'rgba(228, 166, 0, 0.1)',
+  Completed: 'rgba(74,123,160,0.1)',
+  Placeholder: 'rgba(0,0,0,0.05)',
 };
 const STATUS_TEXT: Record<string, string> = {
   Planning: 'var(--rar-flame)',
   'In Progress': 'var(--rar-amber)',
-  Completed: '#5bb578',
+  Completed: 'var(--rar-denim)',
   Placeholder: 'var(--rar-silver)',
 };
 
@@ -53,7 +53,7 @@ export function InstallationCard({ installation }: InstallationCardProps) {
             position: 'absolute',
             top: rem(12),
             right: rem(12),
-            backgroundColor: STATUS_COLOR[installation.status] ?? 'rgba(255,255,255,0.05)',
+            backgroundColor: STATUS_BG[installation.status] ?? 'rgba(0,0,0,0.05)',
             color: STATUS_TEXT[installation.status] ?? 'var(--rar-silver)',
             padding: `${rem(4)} ${rem(10)}`,
             borderRadius: 4,
@@ -61,7 +61,6 @@ export function InstallationCard({ installation }: InstallationCardProps) {
             fontWeight: 600,
             fontFamily: 'Space Grotesk, sans-serif',
             letterSpacing: '0.04em',
-            backdropFilter: 'blur(4px)',
           }}
         >
           {installation.status}
@@ -72,7 +71,7 @@ export function InstallationCard({ installation }: InstallationCardProps) {
         <Text size="xs" style={{ color: 'var(--rar-amber)', fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: rem(6) }}>
           {installation.type}
         </Text>
-        <Title order={4} mb="sm" style={{ color: 'white' }}>
+        <Title order={4} mb="sm" style={{ color: 'var(--rar-text)' }}>
           {installation.title}
         </Title>
         <Text size="sm" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.7, flex: 1 }}>

@@ -17,7 +17,7 @@ export const teamMembers: TeamMember[] = [
   {
     name: 'Brian Scipione',
     role: 'Business Development',
-    bio: 'Brian leads business development efforts, connecting Roll-A-Rack with installer partners, investors, and strategic relationships. He focuses on translating the technology story into real project opportunities.',
+    bio: 'Brian leads business development efforts, connecting Roll-A-Rack with installer partners, pilot partners, and strategic relationships. He focuses on translating the technology story into real project opportunities.',
   },
   {
     name: 'Mike Keller',

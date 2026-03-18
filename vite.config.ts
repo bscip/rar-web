@@ -7,4 +7,5 @@ export default defineConfig({
     TanStackRouterVite({ routesDirectory: 'src/routes', generatedRouteTree: 'src/routeTree.gen.ts' }),
     react(),
   ],
+  base: './',
 })

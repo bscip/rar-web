@@ -83,7 +83,7 @@ export function TeamPage() {
                   flexShrink: 0,
                 }}
               />
-              <Text size="sm" style={{ color: 'var(--rar-text-dim)' }}>
+              <Text size="sm" style={{ color: 'var(--rar-text)' }}>
                 {partner}
               </Text>
             </Box>

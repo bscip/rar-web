@@ -23,7 +23,7 @@ const FOOTER_NAV = [
     heading: 'Work With Us',
     links: [
       { label: 'For Installers', to: '/for-installers' },
-      { label: 'For Investors', to: '/for-investors' },
+      { label: 'Partners', to: '/partners' },
       { label: 'Contact', to: '/contact' },
     ],
   },
@@ -66,7 +66,7 @@ export function SiteFooter() {
                   size="md"
                   style={{
                     fontFamily: 'Space Grotesk, sans-serif',
-                    color: 'white',
+                    color: 'var(--rar-text)',
                   }}
                 >
                   Roll-A-Rack
@@ -99,7 +99,7 @@ export function SiteFooter() {
                     fontFamily: 'Space Grotesk, sans-serif',
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
-                    color: 'var(--rar-silver)',
+                    color: 'var(--rar-charcoal)',
                   }}
                 >
                   {group.heading}
@@ -121,7 +121,7 @@ export function SiteFooter() {
           ))}
         </Grid>
 
-        <Divider mt={48} mb={24} color="rgba(255,255,255,0.06)" />
+        <Divider mt={48} mb={24} color="var(--rar-border)" />
 
         <Group justify="space-between" wrap="wrap" gap="sm">
           <Text size="xs" style={{ color: 'var(--rar-text-muted)' }}>

@@ -39,42 +39,45 @@ const SOLUTION_FEATURES = solutionFeatures.map((f, i) => ({
 export function HomePage() {
   return (
     <>
-      {/* Hero — full viewport with grid bg */}
+      {/* Hero */}
       <Box
         style={{
           position: 'relative',
-          minHeight: '92vh',
+          minHeight: '88vh',
           display: 'flex',
           alignItems: 'center',
           overflow: 'hidden',
+          backgroundColor: 'var(--rar-panel)',
+          borderBottom: '1px solid var(--rar-border)',
         }}
       >
         {/* Grid texture */}
         <Box
           className="rar-grid-bg"
-          style={{ position: 'absolute', inset: 0, opacity: 0.5, pointerEvents: 'none' }}
+          style={{ position: 'absolute', inset: 0, opacity: 0.8, pointerEvents: 'none' }}
         />
-        {/* Amber radial glow */}
+        {/* Soft amber warmth */}
         <Box
           style={{
             position: 'absolute',
-            top: '-20%',
-            left: '-10%',
-            width: '60vw',
-            height: '60vw',
+            top: '-10%',
+            right: '-5%',
+            width: '50vw',
+            height: '50vw',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(228,166,0,0.06) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(228,166,0,0.07) 0%, transparent 65%)',
             pointerEvents: 'none',
           }}
         />
+        {/* Amber top line */}
         <Box
           style={{
             position: 'absolute',
-            bottom: 0,
+            top: 0,
             left: 0,
             right: 0,
-            height: rem(120),
-            background: 'linear-gradient(to bottom, transparent, var(--rar-bg))',
+            height: rem(3),
+            background: 'linear-gradient(to right, var(--rar-amber) 0%, rgba(228,166,0,0.15) 60%, transparent 100%)',
             pointerEvents: 'none',
           }}
         />
@@ -87,10 +90,10 @@ export function HomePage() {
               mt="md"
               mb="xl"
               style={{
-                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                fontSize: 'clamp(2.4rem, 5vw, 3.8rem)',
                 lineHeight: 1.08,
                 letterSpacing: '-0.02em',
-                color: 'white',
+                color: 'var(--rar-text)',
               }}
             >
               Solar racking that cuts land use, simplifies installation, and fits where conventional systems struggle.
@@ -126,17 +129,16 @@ export function HomePage() {
               </Button>
               <Button
                 component={Link}
-                to="/for-investors"
+                to="/partners"
                 variant="outline"
                 color="flame"
                 size="lg"
                 style={{ fontFamily: 'Space Grotesk, sans-serif' }}
               >
-                For Investors
+                Partners
               </Button>
             </Group>
 
-            {/* Stat strip */}
             <StatStrip stats={heroStats} />
           </Box>
         </Container>
@@ -208,7 +210,7 @@ export function HomePage() {
                   backgroundColor: 'var(--rar-amber)',
                 }}
               />
-              <Text fw={600} mb="xs" style={{ color: 'white', fontFamily: 'Space Grotesk, sans-serif' }}>
+              <Text fw={600} mb="xs" style={{ color: 'var(--rar-text)', fontFamily: 'Space Grotesk, sans-serif' }}>
                 {item.title}
               </Text>
               <Text size="sm" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.65 }}>
@@ -223,8 +225,8 @@ export function HomePage() {
       <ContentSection py={80}>
         <CtaCard
           label="Get in touch"
-          headline="Looking at a pilot, partnership, or investment conversation?"
-          subtext="We work with installers, project developers, and investors. If Roll-A-Rack sounds like a fit, let's talk."
+          headline="Looking at a pilot or partnership opportunity?"
+          subtext="We work with installers, project developers, and pilot partners. If Roll-A-Rack sounds like a fit for your project, let's talk."
           variant="flame"
           ctas={
             <>

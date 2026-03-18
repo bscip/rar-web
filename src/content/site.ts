@@ -18,12 +18,6 @@ export interface CredibilityItem {
   body: string;
 }
 
-export interface InvestorReason {
-  number: string;
-  title: string;
-  body: string;
-}
-
 export interface InstallerBenefit {
   title: string;
   body: string;
@@ -32,7 +26,7 @@ export interface InstallerBenefit {
 export const navItems: NavItem[] = [
   { label: 'About', to: '/about' },
   { label: 'Installers', to: '/for-installers' },
-  { label: 'Investors', to: '/for-investors' },
+  { label: 'Partners', to: '/partners' },
   { label: 'Installations', to: '/installations' },
   { label: 'Team', to: '/team' },
   { label: 'Contact', to: '/contact' },
@@ -61,24 +55,6 @@ export const credibilityItems: CredibilityItem[] = [
   {
     title: 'Engineering Partners',
     body: 'Manufacturing and engineering relationships to support deployment.',
-  },
-];
-
-export const investorReasons: InvestorReason[] = [
-  {
-    number: '01',
-    title: 'Land-Use Wedge',
-    body: 'Roll-A-Rack is not a commodity racking variation. The core wedge is reducing land required for deployment — addressing a growing source of project friction across agricultural, commercial, and land-sensitive sites.',
-  },
-  {
-    number: '02',
-    title: 'System & Deployment Leverage',
-    body: 'Portable on-site roll forming, simplified logistics, and installation efficiency create a more differentiated story than standard racking products. The system is designed to be adaptable and repeatable.',
-  },
-  {
-    number: '03',
-    title: 'Grant, Patent & Pilot Foundation',
-    body: 'The company has patents, prior grant support from DOE and USDA, established partner relationships, and a concrete beta-site path — not a concept-stage pitch.',
   },
 ];
 
@@ -132,9 +108,9 @@ export const solutionFeatures: InstallerBenefit[] = [
   },
 ];
 
-export const investorTraction = [
+export const deploymentMilestones = [
   { label: 'DOE grant support', status: 'Complete' },
-  { label: 'USDA runway funding', status: 'Active' },
+  { label: 'USDA development support', status: 'Active' },
   { label: 'Patents issued / pending', status: 'Active' },
   { label: 'Engineering & manufacturing partners', status: 'Active' },
   { label: 'Beta site planning', status: 'In progress' },

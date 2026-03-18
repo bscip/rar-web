@@ -30,7 +30,7 @@ export function FeatureGrid({ features, cols = { base: 1, sm: 2, md: 3 } }: Feat
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: 'rgba(228, 166, 0, 0.12)',
+                backgroundColor: 'rgba(228, 166, 0, 0.1)',
                 borderRadius: 8,
                 color: 'var(--rar-amber)',
               }}
@@ -38,7 +38,7 @@ export function FeatureGrid({ features, cols = { base: 1, sm: 2, md: 3 } }: Feat
               {feature.icon}
             </Box>
           )}
-          <Title order={4} mb="sm" style={{ color: 'white' }}>
+          <Title order={4} mb="sm" style={{ color: 'var(--rar-text)' }}>
             {feature.title}
           </Title>
           <Text size="sm" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.7 }}>

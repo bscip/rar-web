@@ -29,58 +29,32 @@ export function PageHero({
         paddingTop: large ? rem(100) : rem(80),
         paddingBottom: large ? rem(84) : rem(64),
         overflow: 'hidden',
+        backgroundColor: 'var(--rar-panel)',
+        borderBottom: '1px solid var(--rar-border)',
       }}
     >
       {/* Grid texture */}
       {gridBg && (
-        <>
-          <Box
-            className="rar-grid-bg"
-            style={{
-              position: 'absolute',
-              inset: 0,
-              opacity: 0.5,
-              pointerEvents: 'none',
-            }}
-          />
-          {/* Subtle amber glow */}
-          <Box
-            style={{
-              position: 'absolute',
-              top: '-30%',
-              right: '10%',
-              width: '40vw',
-              height: '40vw',
-              borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(228,166,0,0.05) 0%, transparent 70%)',
-              pointerEvents: 'none',
-            }}
-          />
-        </>
+        <Box
+          className="rar-grid-bg"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            opacity: 0.7,
+            pointerEvents: 'none',
+          }}
+        />
       )}
 
-      {/* Bottom fade to main bg */}
-      <Box
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: rem(64),
-          background: 'linear-gradient(to bottom, transparent, var(--rar-bg))',
-          pointerEvents: 'none',
-        }}
-      />
-
-      {/* Top separator line */}
+      {/* Amber accent line at top */}
       <Box
         style={{
           position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
-          height: rem(1),
-          background: 'linear-gradient(to right, transparent, rgba(228,166,0,0.3), transparent)',
+          height: rem(3),
+          background: 'linear-gradient(to right, var(--rar-amber) 0%, rgba(228,166,0,0.2) 60%, transparent 100%)',
           pointerEvents: 'none',
         }}
       />
@@ -103,7 +77,7 @@ export function PageHero({
               fontSize: large ? rem(60) : rem(46),
               lineHeight: 1.08,
               letterSpacing: '-0.02em',
-              color: 'white',
+              color: 'var(--rar-text)',
             }}
           >
             {headline}

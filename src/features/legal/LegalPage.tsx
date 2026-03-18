@@ -17,7 +17,7 @@ export function LegalPage({ doc }: LegalPageProps) {
       {/* Header */}
       <Box mb={56}>
         <span className="rar-label">Legal</span>
-        <Title order={1} mt="sm" style={{ letterSpacing: '-0.02em' }}>
+        <Title order={1} mt="sm" style={{ letterSpacing: '-0.02em', color: 'var(--rar-text)' }}>
           {doc.title}
         </Title>
         <Text size="sm" mt="md" style={{ color: 'var(--rar-text-muted)' }}>
@@ -44,7 +44,7 @@ export function LegalPage({ doc }: LegalPageProps) {
           fw={600}
           mb="md"
           size="sm"
-          style={{ fontFamily: 'Space Grotesk, sans-serif', color: 'white', textTransform: 'uppercase', letterSpacing: '0.06em', fontSize: rem(11) }}
+          style={{ fontFamily: 'Space Grotesk, sans-serif', color: 'var(--rar-charcoal)', textTransform: 'uppercase', letterSpacing: '0.06em', fontSize: rem(11) }}
         >
           Contents
         </Text>
@@ -67,7 +67,7 @@ export function LegalPage({ doc }: LegalPageProps) {
       <Stack gap={56}>
         {doc.sections.map((section) => (
           <Box key={section.id} id={section.id}>
-            <Title order={3} mb="lg" style={{ color: 'white' }}>
+            <Title order={3} mb="lg" style={{ color: 'var(--rar-text)' }}>
               {section.heading}
             </Title>
             <Stack gap="md">
@@ -81,7 +81,7 @@ export function LegalPage({ doc }: LegalPageProps) {
                 }
                 if (item.type === 'h3') {
                   return (
-                    <Title key={i} order={4} style={{ color: 'white' }}>
+                    <Title key={i} order={4} style={{ color: 'var(--rar-text)' }}>
                       {item.content as string}
                     </Title>
                   );

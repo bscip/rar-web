@@ -17,7 +17,7 @@ import { useDisclosure } from '@mantine/hooks';
 const NAV_LINKS = [
   { label: 'About', to: '/about' },
   { label: 'Installers', to: '/for-installers' },
-  { label: 'Investors', to: '/for-investors' },
+  { label: 'Partners', to: '/partners' },
   { label: 'Installations', to: '/installations' },
   { label: 'Team', to: '/team' },
 ];
@@ -49,11 +49,11 @@ export function SiteHeader() {
           height: rem(64),
           backgroundColor: transparent
             ? 'transparent'
-            : 'rgba(13, 15, 16, 0.85)',
+            : 'rgba(255, 255, 255, 0.92)',
           backdropFilter: transparent ? 'none' : 'blur(12px)',
           borderBottom: transparent
             ? '1px solid transparent'
-            : '1px solid rgba(255,255,255,0.07)',
+            : '1px solid var(--rar-border)',
           transition: 'background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease',
         }}
       >
@@ -76,7 +76,7 @@ export function SiteHeader() {
                   size="lg"
                   style={{
                     fontFamily: 'Space Grotesk, sans-serif',
-                    color: 'white',
+                    color: 'var(--rar-text)',
                     letterSpacing: '-0.01em',
                     whiteSpace: 'nowrap',
                   }}
@@ -104,7 +104,7 @@ export function SiteHeader() {
                   activeProps={{
                     style: {
                       fontFamily: 'Space Grotesk, sans-serif',
-                      fontWeight: 500,
+                      fontWeight: 600,
                       fontSize: rem(14),
                       letterSpacing: '0.01em',
                       textDecoration: 'none',
@@ -135,7 +135,6 @@ export function SiteHeader() {
                 opened={drawerOpened}
                 onClick={openDrawer}
                 hiddenFrom="md"
-                color="white"
                 size="sm"
               />
             </Group>
@@ -150,8 +149,8 @@ export function SiteHeader() {
         size="100%"
         padding="xl"
         styles={{
-          content: { backgroundColor: 'var(--rar-panel)' },
-          header: { backgroundColor: 'var(--rar-panel)' },
+          content: { backgroundColor: 'var(--rar-bg)' },
+          header: { backgroundColor: 'var(--rar-bg)' },
         }}
       >
         <Stack gap="lg" mt="xl">
@@ -163,7 +162,7 @@ export function SiteHeader() {
               underline="never"
               onClick={closeDrawer}
               style={{
-                color: 'white',
+                color: 'var(--rar-text)',
                 fontFamily: 'Space Grotesk, sans-serif',
                 fontWeight: 600,
                 fontSize: rem(22),
@@ -172,15 +171,15 @@ export function SiteHeader() {
               {link.label}
             </Anchor>
           ))}
-              <Button
-                component={Link}
-                to="/contact"
-                variant="filled"
-                color="denim"
-                size="lg"
-                mt="md"
-                onClick={closeDrawer}
-              >
+          <Button
+            component={Link}
+            to="/contact"
+            variant="filled"
+            color="denim"
+            size="lg"
+            mt="md"
+            onClick={closeDrawer}
+          >
             Contact Us
           </Button>
         </Stack>

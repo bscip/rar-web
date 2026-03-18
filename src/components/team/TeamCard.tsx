@@ -41,8 +41,8 @@ export function TeamCard({ member }: TeamCardProps) {
               width: rem(52),
               height: rem(52),
               borderRadius: '50%',
-              backgroundColor: 'rgba(228, 166, 0, 0.12)',
-              border: '1px solid rgba(228, 166, 0, 0.2)',
+              backgroundColor: 'rgba(228, 166, 0, 0.1)',
+              border: '1px solid rgba(228, 166, 0, 0.25)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -57,7 +57,7 @@ export function TeamCard({ member }: TeamCardProps) {
           </Box>
         )}
         <Box>
-          <Title order={5} style={{ color: 'white', marginBottom: 2 }}>
+          <Title order={5} style={{ color: 'var(--rar-text)', marginBottom: 2 }}>
             {member.name}
           </Title>
           <Text size="sm" style={{ color: 'var(--rar-amber)', fontFamily: 'Space Grotesk, sans-serif', fontWeight: 500 }}>

@@ -41,11 +41,11 @@ export function ContactPanel() {
       <Grid.Col span={{ base: 12, md: 5 }}>
         <Stack gap="xl">
           <Box>
-            <Title order={3} mb="md">
+            <Title order={3} mb="md" style={{ color: 'var(--rar-text)' }}>
               Get in touch
             </Title>
             <Text style={{ color: 'var(--rar-text-dim)', lineHeight: 1.7 }}>
-              Whether you're evaluating a pilot installation, exploring an installer partnership, or considering an investment, we'd like to hear from you.
+              Whether you're evaluating a pilot installation, exploring an installer partnership, or looking at strategic collaboration, we'd like to hear from you.
             </Text>
           </Box>
 
@@ -72,7 +72,7 @@ export function ContactPanel() {
                 </Text>
                 <Anchor
                   href="mailto:info@roll-a-rack.com"
-                  style={{ color: 'white', fontWeight: 500 }}
+                  style={{ color: 'var(--rar-text)', fontWeight: 500 }}
                   underline="hover"
                 >
                   info@roll-a-rack.com
@@ -88,14 +88,14 @@ export function ContactPanel() {
                 padding: rem(20),
               }}
             >
-              <Text size="sm" fw={600} style={{ color: 'white', marginBottom: rem(8), fontFamily: 'Space Grotesk, sans-serif' }}>
+              <Text size="sm" fw={600} style={{ color: 'var(--rar-text)', marginBottom: rem(8), fontFamily: 'Space Grotesk, sans-serif' }}>
                 Types of outreach welcome:
               </Text>
               <Stack gap="xs">
                 {[
                   'Installer / pilot project opportunities',
                   'Developer partnerships',
-                  'Investor inquiries',
+                  'Partnership inquiries',
                   'General questions about the technology',
                 ].map((item) => (
                   <Group key={item} gap="xs" wrap="nowrap">
@@ -127,7 +127,7 @@ export function ContactPanel() {
               style={{
                 width: rem(56),
                 height: rem(56),
-                backgroundColor: 'rgba(228, 166, 0, 0.12)',
+                backgroundColor: 'rgba(228, 166, 0, 0.1)',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
@@ -139,7 +139,7 @@ export function ContactPanel() {
             >
               <IconCheck size={28} />
             </Box>
-            <Title order={3} mb="sm">
+            <Title order={3} mb="sm" style={{ color: 'var(--rar-text)' }}>
               Your email client should open shortly.
             </Title>
             <Text style={{ color: 'var(--rar-text-dim)' }}>
@@ -169,7 +169,6 @@ export function ContactPanel() {
                     required
                     value={form.name}
                     onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                    styles={{ label: { color: 'var(--rar-text-dim)', marginBottom: 6 } }}
                   />
                 </Grid.Col>
                 <Grid.Col span={{ base: 12, sm: 6 }}>
@@ -180,7 +179,6 @@ export function ContactPanel() {
                     required
                     value={form.email}
                     onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                    styles={{ label: { color: 'var(--rar-text-dim)', marginBottom: 6 } }}
                   />
                 </Grid.Col>
               </Grid>
@@ -190,7 +188,6 @@ export function ContactPanel() {
                 placeholder="Optional"
                 value={form.company}
                 onChange={(e) => setForm((f) => ({ ...f, company: e.target.value }))}
-                styles={{ label: { color: 'var(--rar-text-dim)', marginBottom: 6 } }}
               />
 
               <Select
@@ -199,12 +196,11 @@ export function ContactPanel() {
                 required
                 data={[
                   { value: 'Installer / project opportunity', label: 'Installer / project opportunity' },
-                  { value: 'Investor inquiry', label: 'Investor inquiry' },
+                  { value: 'Partnership inquiry', label: 'Partnership inquiry' },
                   { value: 'General question', label: 'General question' },
                 ]}
                 value={form.subject}
                 onChange={(val) => setForm((f) => ({ ...f, subject: val ?? '' }))}
-                styles={{ label: { color: 'var(--rar-text-dim)', marginBottom: 6 } }}
               />
 
               <Textarea
@@ -214,7 +210,6 @@ export function ContactPanel() {
                 minRows={5}
                 value={form.message}
                 onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-                styles={{ label: { color: 'var(--rar-text-dim)', marginBottom: 6 } }}
               />
 
               <Button

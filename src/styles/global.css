@@ -8,19 +8,19 @@
 @import '@mantine/core/styles.css';
 
 :root {
-  --rar-bg: #0d0f10;
-  --rar-panel: #1a1c1e;
-  --rar-panel-alt: #23262a;
-  --rar-border: rgba(255, 255, 255, 0.07);
-  --rar-border-strong: rgba(255, 255, 255, 0.12);
+  --rar-bg: #ffffff;
+  --rar-panel: #f5f6f8;
+  --rar-panel-alt: #eef0f2;
+  --rar-border: rgba(0, 0, 0, 0.08);
+  --rar-border-strong: rgba(0, 0, 0, 0.14);
   --rar-amber: #e4a600;
   --rar-flame: #ff3c00;
-  --rar-denim: #5c8db5;
+  --rar-denim: #4a7ba0;
   --rar-charcoal: #4b4f54;
-  --rar-silver: #aeaeae;
-  --rar-text: #ffffff;
-  --rar-text-dim: rgba(255, 255, 255, 0.65);
-  --rar-text-muted: rgba(255, 255, 255, 0.45);
+  --rar-silver: #8a8f96;
+  --rar-text: #1a1c1e;
+  --rar-text-dim: rgba(26, 28, 30, 0.62);
+  --rar-text-muted: rgba(26, 28, 30, 0.38);
 }
 
 *,
@@ -52,12 +52,12 @@ body {
 /* Subtle grid overlay for visual texture */
 .rar-grid-bg {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
-/* Amber accent underline for section labels */
+/* Amber accent label */
 .rar-label {
   display: inline-block;
   font-family: 'Space Grotesk', system-ui, sans-serif;
@@ -74,7 +74,7 @@ body {
 }
 .rar-card-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
 }
 
 /* Divider with amber accent */

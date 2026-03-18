@@ -16,9 +16,9 @@ export function CtaCard({ label, headline, subtext, ctas, variant = 'default' }:
     <Box
       style={{
         background: isFlame
-          ? 'linear-gradient(135deg, rgba(255,60,0,0.15) 0%, rgba(228,166,0,0.08) 100%)'
+          ? 'linear-gradient(135deg, rgba(255,60,0,0.06) 0%, rgba(228,166,0,0.06) 100%)'
           : 'var(--rar-panel)',
-        border: `1px solid ${isFlame ? 'rgba(255,60,0,0.25)' : 'var(--rar-border)'}`,
+        border: `1px solid ${isFlame ? 'rgba(255,60,0,0.2)' : 'var(--rar-border)'}`,
         borderRadius: 16,
         padding: `${rem(64)} ${rem(48)}`,
         textAlign: 'center',
@@ -36,6 +36,7 @@ export function CtaCard({ label, headline, subtext, ctas, variant = 'default' }:
           style={{
             fontSize: rem(36),
             letterSpacing: '-0.015em',
+            color: 'var(--rar-text)',
           }}
         >
           {headline}

@@ -9,14 +9,14 @@ interface TimelineBlockProps {
   items: TimelineItem[];
 }
 
-const STATUS_COLORS: Record<string, string> = {
-  Complete: 'rgba(92, 141, 181, 0.15)',
-  Active: 'rgba(228, 166, 0, 0.12)',
-  'In progress': 'rgba(228, 166, 0, 0.08)',
-  Target: 'rgba(255, 255, 255, 0.05)',
+const STATUS_BG: Record<string, string> = {
+  Complete: 'rgba(74,123,160,0.1)',
+  Active: 'rgba(228, 166, 0, 0.1)',
+  'In progress': 'rgba(228, 166, 0, 0.07)',
+  Target: 'rgba(0,0,0,0.04)',
 };
 
-const STATUS_TEXT_COLORS: Record<string, string> = {
+const STATUS_TEXT: Record<string, string> = {
   Complete: 'var(--rar-flame)',
   Active: 'var(--rar-amber)',
   'In progress': 'var(--rar-amber)',
@@ -43,7 +43,7 @@ export function TimelineBlock({ items }: TimelineBlockProps) {
         >
           <Text
             style={{
-              color: 'white',
+              color: 'var(--rar-text)',
               fontWeight: 500,
               fontFamily: 'Space Grotesk, sans-serif',
             }}
@@ -53,8 +53,8 @@ export function TimelineBlock({ items }: TimelineBlockProps) {
           <Box
             style={{
               flexShrink: 0,
-              backgroundColor: STATUS_COLORS[item.status] ?? 'rgba(255,255,255,0.05)',
-              color: STATUS_TEXT_COLORS[item.status] ?? 'var(--rar-silver)',
+              backgroundColor: STATUS_BG[item.status] ?? 'rgba(0,0,0,0.04)',
+              color: STATUS_TEXT[item.status] ?? 'var(--rar-silver)',
               padding: `${rem(4)} ${rem(12)}`,
               borderRadius: 4,
               fontSize: rem(12),

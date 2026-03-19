@@ -18,7 +18,7 @@ export function MarketingLayout() {
         component="main"
         style={{
           flex: 1,
-          paddingTop: 64, // header height
+          paddingTop: 88, // header height
         }}
       >
         <Outlet />

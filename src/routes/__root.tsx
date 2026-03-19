@@ -23,7 +23,7 @@ function NotFound() {
   return (
     <Box style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--rar-bg)' }}>
       <SiteHeader />
-      <Box component="main" style={{ flex: 1, paddingTop: 64 }}>
+      <Box component="main" style={{ flex: 1, paddingTop: 88 }}>
         <NotFoundPage />
       </Box>
       <SiteFooter />

@@ -51,27 +51,11 @@ export function SiteFooter() {
           {/* Brand column */}
           <Grid.Col span={{ base: 12, md: 4 }}>
             <Stack gap="md">
-              <Group gap="xs">
-                <Box
-                  style={{
-                    width: 24,
-                    height: 24,
-                    backgroundColor: 'var(--rar-amber)',
-                    borderRadius: 4,
-                    flexShrink: 0,
-                  }}
-                />
-                <Text
-                  fw={700}
-                  size="md"
-                  style={{
-                    fontFamily: 'Space Grotesk, sans-serif',
-                    color: 'var(--rar-text)',
-                  }}
-                >
-                  Roll-A-Rack
-                </Text>
-              </Group>
+              <img
+                src="/images/rar-logo-horizontal.svg"
+                alt="Roll-A-Rack"
+                style={{ height: 70, width: 'auto', display: 'block', alignSelf: 'flex-start' }}
+              />
               <Text size="sm" style={{ color: 'var(--rar-text-dim)', maxWidth: 280, lineHeight: 1.7 }}>
                 Land-based solar racking designed to reduce land use, manage
                 rainwater, and simplify deployment for installers and developers.

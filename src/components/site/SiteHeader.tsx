@@ -4,7 +4,6 @@ import {
   Box,
   Container,
   Group,
-  Text,
   Button,
   Burger,
   Drawer,
@@ -46,7 +45,7 @@ export function SiteHeader() {
           left: 0,
           right: 0,
           zIndex: 100,
-          height: rem(64),
+          height: rem(88),
           backgroundColor: transparent
             ? 'transparent'
             : 'rgba(255, 255, 255, 0.92)',
@@ -61,29 +60,11 @@ export function SiteHeader() {
           <Group h="100%" justify="space-between" wrap="nowrap">
             {/* Logo */}
             <Anchor component={Link} to="/" underline="never">
-              <Group gap="xs" wrap="nowrap">
-                <Box
-                  style={{
-                    width: 28,
-                    height: 28,
-                    backgroundColor: 'var(--rar-amber)',
-                    borderRadius: 4,
-                    flexShrink: 0,
-                  }}
-                />
-                <Text
-                  fw={700}
-                  size="lg"
-                  style={{
-                    fontFamily: 'Space Grotesk, sans-serif',
-                    color: 'var(--rar-text)',
-                    letterSpacing: '-0.01em',
-                    whiteSpace: 'nowrap',
-                  }}
-                >
-                  Roll-A-Rack
-                </Text>
-              </Group>
+              <img
+                src="/images/rar-logo-horizontal.svg"
+                alt="Roll-A-Rack"
+                style={{ height: 70, width: 'auto', display: 'block' }}
+              />
             </Anchor>
 
             {/* Desktop nav */}

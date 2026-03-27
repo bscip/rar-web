@@ -49,10 +49,6 @@ export const credibilityItems: CredibilityItem[] = [
     body: 'Department of Energy grant funding backing development and validation.',
   },
   {
-    title: 'USDA Support',
-    body: 'USDA support providing runway through the current development phase.',
-  },
-  {
     title: 'Engineering Partners',
     body: 'Manufacturing and engineering relationships to support deployment.',
   },
@@ -110,7 +106,6 @@ export const solutionFeatures: InstallerBenefit[] = [
 
 export const deploymentMilestones = [
   { label: 'DOE grant support', status: 'Complete' },
-  { label: 'USDA development support', status: 'Active' },
   { label: 'Patents issued / pending', status: 'Active' },
   { label: 'Engineering & manufacturing partners', status: 'Active' },
   { label: 'Beta site planning', status: 'In progress' },

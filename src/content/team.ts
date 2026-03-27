@@ -26,12 +26,6 @@ export const teamMembers: TeamMember[] = [
     bio: 'Mike provides mechanical engineering support through MAGNET, contributing to the system design, structural validation, and readiness for real-world deployment conditions.',
   },
   {
-    name: 'Adam Mazella',
-    role: 'President, New Tech Machinery',
-    company: 'New Tech Machinery',
-    bio: "Adam brings deep expertise in portable roll-forming technology through New Tech Machinery. His relationship with RAR supports the manufacturing side of the on-site forming approach that makes the system distinctive.",
-  },
-  {
     name: 'Jamie Doyle',
     role: 'Solar Installer',
     bio: 'Jamie brings hands-on solar installation experience to the team, grounding product development in the practical realities of field deployment and installer workflow.',

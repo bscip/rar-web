@@ -1,7 +1,10 @@
-import { Link } from '@tanstack/react-router';
 import { Container, Title, Text, Button, Stack, Box } from '@mantine/core';
 
-export function NotFoundPage() {
+interface ErrorPageProps {
+  reset?: () => void;
+}
+
+export function ErrorPage({ reset }: ErrorPageProps) {
   return (
     <Container size="sm" py={80} style={{ position: 'relative', overflow: 'hidden' }}>
       <Box
@@ -13,7 +16,7 @@ export function NotFoundPage() {
           fontFamily: 'Space Grotesk, sans-serif',
           fontSize: 'clamp(140px, 28vw, 280px)',
           fontWeight: 900,
-          color: 'rgba(228, 166, 0, 0.10)',
+          color: 'rgba(255, 60, 0, 0.08)',
           lineHeight: 1,
           userSelect: 'none',
           pointerEvents: 'none',
@@ -21,7 +24,7 @@ export function NotFoundPage() {
         }}
         aria-hidden
       >
-        404
+        500
       </Box>
 
       <Stack align="center" gap="xl" ta="center" style={{ position: 'relative', paddingTop: 80, paddingBottom: 80 }}>
@@ -34,14 +37,19 @@ export function NotFoundPage() {
               color: 'var(--rar-text)',
             }}
           >
-            You've found a dead end.
+            Something went wrong.
           </Title>
           <Text size="lg" maw={420} style={{ color: 'var(--rar-text-dim)', lineHeight: 1.7 }}>
-            This page doesn't exist or may have been moved. If you followed an old link, it's no longer active.
+            An unexpected error occurred on our end. Try refreshing the page — if the problem continues, please get in touch.
           </Text>
         </Stack>
-        <Button component={Link} to="/" variant="filled" color="amber" size="md">
-          Back to Home
+        <Button
+          onClick={reset ?? (() => window.location.reload())}
+          variant="filled"
+          color="flame"
+          size="md"
+        >
+          Refresh the page
         </Button>
       </Stack>
     </Container>

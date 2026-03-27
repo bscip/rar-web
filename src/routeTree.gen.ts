@@ -9,8 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VideosRouteImport } from './routes/videos'
+import { Route as TechnologyRouteImport } from './routes/technology'
+import { Route as RollARackGutterLikeRackingSystemCollectsRainwaterFallingOnSolarArraysRouteImport } from './routes/roll-a-rack-gutter-like-racking-system-collects-rainwater-falling-on-solar-arrays'
+import { Route as InTheNewsRouteImport } from './routes/in-the-news'
+import { Route as AnnouncingRollARackRouteImport } from './routes/announcing-roll-a-rack'
 import { Route as MarketingRouteImport } from './routes/_marketing'
+import { Route as VideosIndexRouteImport } from './routes/videos/index'
 import { Route as MarketingIndexRouteImport } from './routes/_marketing/index'
+import { Route as VideosInsiderollARackRouteImport } from './routes/videos/insideroll-a-rack'
+import { Route as VideosFeavideoRouteImport } from './routes/videos/feavideo'
 import { Route as MarketingTermsRouteImport } from './routes/_marketing/terms'
 import { Route as MarketingTeamRouteImport } from './routes/_marketing/team'
 import { Route as MarketingPrivacyRouteImport } from './routes/_marketing/privacy'
@@ -20,14 +28,57 @@ import { Route as MarketingForInstallersRouteImport } from './routes/_marketing/
 import { Route as MarketingContactRouteImport } from './routes/_marketing/contact'
 import { Route as MarketingAboutRouteImport } from './routes/_marketing/about'
 
+const VideosRoute = VideosRouteImport.update({
+  id: '/videos',
+  path: '/videos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TechnologyRoute = TechnologyRouteImport.update({
+  id: '/technology',
+  path: '/technology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RollARackGutterLikeRackingSystemCollectsRainwaterFallingOnSolarArraysRoute =
+  RollARackGutterLikeRackingSystemCollectsRainwaterFallingOnSolarArraysRouteImport.update(
+    {
+      id: '/roll-a-rack-gutter-like-racking-system-collects-rainwater-falling-on-solar-arrays',
+      path: '/roll-a-rack-gutter-like-racking-system-collects-rainwater-falling-on-solar-arrays',
+      getParentRoute: () => rootRouteImport,
+    } as any,
+  )
+const InTheNewsRoute = InTheNewsRouteImport.update({
+  id: '/in-the-news',
+  path: '/in-the-news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnnouncingRollARackRoute = AnnouncingRollARackRouteImport.update({
+  id: '/announcing-roll-a-rack',
+  path: '/announcing-roll-a-rack',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MarketingRoute = MarketingRouteImport.update({
   id: '/_marketing',
   getParentRoute: () => rootRouteImport,
+} as any)
+const VideosIndexRoute = VideosIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => VideosRoute,
 } as any)
 const MarketingIndexRoute = MarketingIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => MarketingRoute,
+} as any)
+const VideosInsiderollARackRoute = VideosInsiderollARackRouteImport.update({
+  id: '/insideroll-a-rack',
+  path: '/insideroll-a-rack',
+  getParentRoute: () => VideosRoute,
+} as any)
+const VideosFeavideoRoute = VideosFeavideoRouteImport.update({
+  id: '/feavideo',
+  path: '/feavideo',
+  getParentRoute: () => VideosRoute,
 } as any)
 const MarketingTermsRoute = MarketingTermsRouteImport.update({
   id: '/terms',
@@ -72,6 +123,11 @@ const MarketingAboutRoute = MarketingAboutRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof MarketingIndexRoute
+  '/announcing-roll-a-rack': typeof AnnouncingRollARackRoute
+  '/in-the-news': typeof InTheNewsRoute
+  '/roll-a-rack-gutter-like-racking-system-collects-rainwater-falling-on-solar-arrays': typeof RollARackGutterLikeRackingSystemCollectsRainwaterFallingOnSolarArraysRoute
+  '/technology': typeof TechnologyRoute
+  '/videos': typeof VideosRouteWithChildren
   '/about': typeof MarketingAboutRoute
   '/contact': typeof MarketingContactRoute
   '/for-installers': typeof MarketingForInstallersRoute
@@ -80,8 +136,15 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof MarketingPrivacyRoute
   '/team': typeof MarketingTeamRoute
   '/terms': typeof MarketingTermsRoute
+  '/videos/feavideo': typeof VideosFeavideoRoute
+  '/videos/insideroll-a-rack': typeof VideosInsiderollARackRoute
+  '/videos/': typeof VideosIndexRoute
 }
 export interface FileRoutesByTo {
+  '/announcing-roll-a-rack': typeof AnnouncingRollARackRoute
+  '/in-the-news': typeof InTheNewsRoute
+  '/roll-a-rack-gutter-like-racking-system-collects-rainwater-falling-on-solar-arrays': typeof RollARackGutterLikeRackingSystemCollectsRainwaterFallingOnSolarArraysRoute
+  '/technology': typeof TechnologyRoute
   '/about': typeof MarketingAboutRoute
   '/contact': typeof MarketingContactRoute
   '/for-installers': typeof MarketingForInstallersRoute
@@ -90,11 +153,19 @@ export interface FileRoutesByTo {
   '/privacy': typeof MarketingPrivacyRoute
   '/team': typeof MarketingTeamRoute
   '/terms': typeof MarketingTermsRoute
+  '/videos/feavideo': typeof VideosFeavideoRoute
+  '/videos/insideroll-a-rack': typeof VideosInsiderollARackRoute
   '/': typeof MarketingIndexRoute
+  '/videos': typeof VideosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_marketing': typeof MarketingRouteWithChildren
+  '/announcing-roll-a-rack': typeof AnnouncingRollARackRoute
+  '/in-the-news': typeof InTheNewsRoute
+  '/roll-a-rack-gutter-like-racking-system-collects-rainwater-falling-on-solar-arrays': typeof RollARackGutterLikeRackingSystemCollectsRainwaterFallingOnSolarArraysRoute
+  '/technology': typeof TechnologyRoute
+  '/videos': typeof VideosRouteWithChildren
   '/_marketing/about': typeof MarketingAboutRoute
   '/_marketing/contact': typeof MarketingContactRoute
   '/_marketing/for-installers': typeof MarketingForInstallersRoute
@@ -103,12 +174,20 @@ export interface FileRoutesById {
   '/_marketing/privacy': typeof MarketingPrivacyRoute
   '/_marketing/team': typeof MarketingTeamRoute
   '/_marketing/terms': typeof MarketingTermsRoute
+  '/videos/feavideo': typeof VideosFeavideoRoute
+  '/videos/insideroll-a-rack': typeof VideosInsiderollARackRoute
   '/_marketing/': typeof MarketingIndexRoute
+  '/videos/': typeof VideosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/announcing-roll-a-rack'
+    | '/in-the-news'
+    | '/roll-a-rack-gutter-like-racking-system-collects-rainwater-falling-on-solar-arrays'
+    | '/technology'
+    | '/videos'
     | '/about'
     | '/contact'
     | '/for-installers'
@@ -117,8 +196,15 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/team'
     | '/terms'
+    | '/videos/feavideo'
+    | '/videos/insideroll-a-rack'
+    | '/videos/'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/announcing-roll-a-rack'
+    | '/in-the-news'
+    | '/roll-a-rack-gutter-like-racking-system-collects-rainwater-falling-on-solar-arrays'
+    | '/technology'
     | '/about'
     | '/contact'
     | '/for-installers'
@@ -127,10 +213,18 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/team'
     | '/terms'
+    | '/videos/feavideo'
+    | '/videos/insideroll-a-rack'
     | '/'
+    | '/videos'
   id:
     | '__root__'
     | '/_marketing'
+    | '/announcing-roll-a-rack'
+    | '/in-the-news'
+    | '/roll-a-rack-gutter-like-racking-system-collects-rainwater-falling-on-solar-arrays'
+    | '/technology'
+    | '/videos'
     | '/_marketing/about'
     | '/_marketing/contact'
     | '/_marketing/for-installers'
@@ -139,15 +233,58 @@ export interface FileRouteTypes {
     | '/_marketing/privacy'
     | '/_marketing/team'
     | '/_marketing/terms'
+    | '/videos/feavideo'
+    | '/videos/insideroll-a-rack'
     | '/_marketing/'
+    | '/videos/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   MarketingRoute: typeof MarketingRouteWithChildren
+  AnnouncingRollARackRoute: typeof AnnouncingRollARackRoute
+  InTheNewsRoute: typeof InTheNewsRoute
+  RollARackGutterLikeRackingSystemCollectsRainwaterFallingOnSolarArraysRoute: typeof RollARackGutterLikeRackingSystemCollectsRainwaterFallingOnSolarArraysRoute
+  TechnologyRoute: typeof TechnologyRoute
+  VideosRoute: typeof VideosRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/videos': {
+      id: '/videos'
+      path: '/videos'
+      fullPath: '/videos'
+      preLoaderRoute: typeof VideosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/technology': {
+      id: '/technology'
+      path: '/technology'
+      fullPath: '/technology'
+      preLoaderRoute: typeof TechnologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/roll-a-rack-gutter-like-racking-system-collects-rainwater-falling-on-solar-arrays': {
+      id: '/roll-a-rack-gutter-like-racking-system-collects-rainwater-falling-on-solar-arrays'
+      path: '/roll-a-rack-gutter-like-racking-system-collects-rainwater-falling-on-solar-arrays'
+      fullPath: '/roll-a-rack-gutter-like-racking-system-collects-rainwater-falling-on-solar-arrays'
+      preLoaderRoute: typeof RollARackGutterLikeRackingSystemCollectsRainwaterFallingOnSolarArraysRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/in-the-news': {
+      id: '/in-the-news'
+      path: '/in-the-news'
+      fullPath: '/in-the-news'
+      preLoaderRoute: typeof InTheNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/announcing-roll-a-rack': {
+      id: '/announcing-roll-a-rack'
+      path: '/announcing-roll-a-rack'
+      fullPath: '/announcing-roll-a-rack'
+      preLoaderRoute: typeof AnnouncingRollARackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_marketing': {
       id: '/_marketing'
       path: ''
@@ -155,12 +292,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/videos/': {
+      id: '/videos/'
+      path: '/'
+      fullPath: '/videos/'
+      preLoaderRoute: typeof VideosIndexRouteImport
+      parentRoute: typeof VideosRoute
+    }
     '/_marketing/': {
       id: '/_marketing/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof MarketingIndexRouteImport
       parentRoute: typeof MarketingRoute
+    }
+    '/videos/insideroll-a-rack': {
+      id: '/videos/insideroll-a-rack'
+      path: '/insideroll-a-rack'
+      fullPath: '/videos/insideroll-a-rack'
+      preLoaderRoute: typeof VideosInsiderollARackRouteImport
+      parentRoute: typeof VideosRoute
+    }
+    '/videos/feavideo': {
+      id: '/videos/feavideo'
+      path: '/feavideo'
+      fullPath: '/videos/feavideo'
+      preLoaderRoute: typeof VideosFeavideoRouteImport
+      parentRoute: typeof VideosRoute
     }
     '/_marketing/terms': {
       id: '/_marketing/terms'
@@ -249,8 +407,29 @@ const MarketingRouteWithChildren = MarketingRoute._addFileChildren(
   MarketingRouteChildren,
 )
 
+interface VideosRouteChildren {
+  VideosFeavideoRoute: typeof VideosFeavideoRoute
+  VideosInsiderollARackRoute: typeof VideosInsiderollARackRoute
+  VideosIndexRoute: typeof VideosIndexRoute
+}
+
+const VideosRouteChildren: VideosRouteChildren = {
+  VideosFeavideoRoute: VideosFeavideoRoute,
+  VideosInsiderollARackRoute: VideosInsiderollARackRoute,
+  VideosIndexRoute: VideosIndexRoute,
+}
+
+const VideosRouteWithChildren =
+  VideosRoute._addFileChildren(VideosRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   MarketingRoute: MarketingRouteWithChildren,
+  AnnouncingRollARackRoute: AnnouncingRollARackRoute,
+  InTheNewsRoute: InTheNewsRoute,
+  RollARackGutterLikeRackingSystemCollectsRainwaterFallingOnSolarArraysRoute:
+    RollARackGutterLikeRackingSystemCollectsRainwaterFallingOnSolarArraysRoute,
+  TechnologyRoute: TechnologyRoute,
+  VideosRoute: VideosRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

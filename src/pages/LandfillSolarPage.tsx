@@ -1,35 +1,78 @@
 import { useEffect } from 'react';
 import { Link } from '@tanstack/react-router';
 import {
+  Accordion,
   Box,
   Button,
   Group,
-  Text,
+  Image,
   List,
+  SimpleGrid,
+  Stack,
+  Text,
+  Title,
   rem,
 } from '@mantine/core';
-import { IconArrowRight, IconCheck } from '@tabler/icons-react';
+import { IconArrowRight, IconCheck, IconInfoCircle } from '@tabler/icons-react';
 import { PageHero } from '../components/site/PageHero';
 import { SectionHeading } from '../components/site/SectionHeading';
 import { ContentSection } from '../components/site/ContentSection';
 import { FaqAccordion } from '../components/marketing/FaqAccordion';
+import { ProcessComparison } from '../components/marketing/ProcessComparison';
+import { MetricsComparison } from '../components/marketing/MetricsComparison';
 import {
   heroContent,
   credibilityTags,
+  glanceCards,
+  anchorNav,
   prioritiesContent,
   priorityItems,
-  faqItems,
+  accordionGroups,
+  processComparison,
+  metricsComparison,
+  q36Content,
+  ctaContent,
 } from '../content/landfillSolar';
+
+function TechImage({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
+  return (
+    <Box
+      style={{
+        border: '1px solid var(--rar-border)',
+        borderRadius: rem(10),
+        overflow: 'hidden',
+        backgroundColor: '#fff',
+      }}
+    >
+      <Image src={src} alt={alt} fit="contain" />
+      {caption && (
+        <Text
+          size="xs"
+          ta="center"
+          py={8}
+          px={12}
+          style={{
+            color: 'var(--rar-text-muted)',
+            fontFamily: 'Space Grotesk, sans-serif',
+            borderTop: '1px solid var(--rar-border)',
+            backgroundColor: 'var(--rar-panel)',
+          }}
+        >
+          {caption}
+        </Text>
+      )}
+    </Box>
+  );
+}
 
 export function LandfillSolarPage() {
   useEffect(() => {
-    document.title =
-      'Landfill & Constrained-Site Solar — Roll-A-Rack';
+    document.title = 'Landfill & Constrained-Site Solar — Roll-A-Rack';
   }, []);
 
   return (
     <>
-      {/* Hero */}
+      {/* ── Hero ────────────────────────────────────────────── */}
       <PageHero
         label={heroContent.eyebrow}
         headline={heroContent.headline}
@@ -62,7 +105,7 @@ export function LandfillSolarPage() {
         }
       />
 
-      {/* Second intro paragraph + credibility tags */}
+      {/* ── Second intro + credibility tags ─────────────────── */}
       <ContentSection py={48}>
         <Text
           size="lg"
@@ -103,8 +146,79 @@ export function LandfillSolarPage() {
         </Group>
       </ContentSection>
 
-      {/* What This Project Appears to Prioritize */}
+      {/* ── At-a-Glance Cards ──────────────────────────────── */}
       <ContentSection alt py={72}>
+        <SectionHeading
+          label="At a glance"
+          title="RAR at a Glance"
+          subtitle="Six things to know about Roll-A-Rack in under a minute."
+        />
+        <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="lg">
+          {glanceCards.map((card) => (
+            <Box
+              key={card.title}
+              className="rar-panel rar-card-hover"
+              style={{ padding: `${rem(24)} ${rem(24)}` }}
+            >
+              <Text
+                fw={600}
+                mb={6}
+                style={{
+                  fontFamily: 'Space Grotesk, sans-serif',
+                  color: 'var(--rar-text)',
+                }}
+              >
+                {card.title}
+              </Text>
+              <Text size="sm" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.65 }}>
+                {card.body}
+              </Text>
+            </Box>
+          ))}
+        </SimpleGrid>
+      </ContentSection>
+
+      {/* ── Anchor Navigation Strip ────────────────────────── */}
+      <Box
+        style={{
+          borderBottom: '1px solid var(--rar-border)',
+          backgroundColor: 'var(--rar-bg)',
+          position: 'sticky',
+          top: 80,
+          zIndex: 90,
+        }}
+      >
+        <Group
+          gap="xs"
+          wrap="wrap"
+          justify="center"
+          py={14}
+          px="md"
+          maw={1200}
+          mx="auto"
+        >
+          {anchorNav.map((item) => (
+            <Button
+              key={item.anchor}
+              component="a"
+              href={`#${item.anchor}`}
+              variant="subtle"
+              color="gray"
+              size="compact-sm"
+              style={{
+                fontFamily: 'Space Grotesk, sans-serif',
+                fontWeight: 500,
+                fontSize: rem(13),
+              }}
+            >
+              {item.label}
+            </Button>
+          ))}
+        </Group>
+      </Box>
+
+      {/* ── Priorities ─────────────────────────────────────── */}
+      <ContentSection py={72}>
         <Box maw={700}>
           <SectionHeading
             label="Project context"
@@ -133,10 +247,7 @@ export function LandfillSolarPage() {
           >
             {priorityItems.map((item) => (
               <List.Item key={item.text}>
-                <Text
-                  fw={500}
-                  style={{ color: 'var(--rar-text)', lineHeight: 1.65 }}
-                >
+                <Text fw={500} style={{ color: 'var(--rar-text)', lineHeight: 1.65 }}>
                   {item.text}
                 </Text>
               </List.Item>
@@ -145,19 +256,220 @@ export function LandfillSolarPage() {
         </Box>
       </ContentSection>
 
-      {/* FAQ Accordion */}
-      <Box id="fit" style={{ scrollMarginTop: rem(100) }}>
-        <ContentSection py={80}>
+      {/* ── Grouped Accordion Sections ─────────────────────── */}
+      {accordionGroups.map((group, gi) => (
+        <Box
+          key={group.anchor}
+          id={group.anchor}
+          style={{ scrollMarginTop: rem(140) }}
+        >
+          <ContentSection alt={gi % 2 === 0} py={80}>
+            <SectionHeading
+              label={group.label}
+              title={group.title}
+              maw={640}
+            />
+
+            {/* Images for Performance & Design section */}
+            {group.anchor === 'performance-design' && (
+              <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg" mb="xl">
+                <TechImage
+                  src="/images/rar-tech-002a.png"
+                  alt="Roll-A-Rack low-profile tilt design"
+                  caption="5° low-profile tilt design — reduced wind loads and higher site density"
+                />
+                <TechImage
+                  src="/images/rar-tech-002b.png"
+                  alt="Roll-A-Rack density comparison"
+                  caption="Row spacing comparison vs. conventional racking"
+                />
+              </SimpleGrid>
+            )}
+
+            {/* Images for Construction & Execution section */}
+            {group.anchor === 'construction-execution' && (
+              <>
+                <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg" mb="xl">
+                  <TechImage
+                    src="/images/rar-machine.jpg"
+                    alt="Roll-A-Rack portable roll-forming machine"
+                    caption="Portable roll-forming equipment brought directly to the project site"
+                  />
+                  <TechImage
+                    src="/images/rar-tech-001.png"
+                    alt="Roll-A-Rack system overview"
+                    caption="Two-component system: gutter channel + clamp bracket"
+                  />
+                </SimpleGrid>
+                <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg" mb="xl">
+                  <TechImage
+                    src="/images/rar-tech-003.png"
+                    alt="Roll-A-Rack channel dimensions"
+                    caption="Gutter channel cross-section and dimensions"
+                  />
+                  <TechImage
+                    src="/images/rar-tech-005.png"
+                    alt="Roll-A-Rack clamp detail"
+                    caption="Clamp bracket attachment detail"
+                  />
+                </SimpleGrid>
+              </>
+            )}
+
+            <Box maw={800}>
+              <FaqAccordion items={group.items} />
+            </Box>
+          </ContentSection>
+        </Box>
+      ))}
+
+      {/* ── Deep Proof: Process Comparison ──────────────────── */}
+      <ContentSection py={80}>
+        <Box maw={900}>
           <SectionHeading
-            label="Fit considerations"
-            title="How Roll-A-Rack may address these constraints."
-            maw={640}
+            label="Build comparison"
+            title="How the build process differs."
           />
-          <Box maw={800}>
-            <FaqAccordion items={faqItems} />
+          <ProcessComparison
+            traditional={processComparison.traditional}
+            rar={processComparison.rar}
+            summary={processComparison.summary}
+          />
+        </Box>
+      </ContentSection>
+
+      {/* ── Deep Proof: Metrics Comparison ──────────────────── */}
+      <ContentSection alt py={80}>
+        <Box maw={900}>
+          <SectionHeading
+            label="Metrics"
+            title="Total installed cost — not just racking cost."
+          />
+          <MetricsComparison rows={metricsComparison} />
+        </Box>
+      </ContentSection>
+
+      {/* ── Deep Proof: Question 36 ────────────────────────── */}
+      <ContentSection py={72}>
+        <Box maw={800}>
+          <SectionHeading
+            label="Procurement context"
+            title="City of Cleveland: Question 36 Response"
+          />
+          <Text
+            size="lg"
+            mb="lg"
+            style={{ color: 'var(--rar-text-dim)', lineHeight: 1.75 }}
+          >
+            {q36Content.summary}
+          </Text>
+          <Accordion
+            variant="separated"
+            radius="md"
+            styles={{
+              item: {
+                backgroundColor: 'var(--rar-panel)',
+                border: '1px solid var(--rar-border)',
+                borderLeft: '3px solid var(--rar-amber)',
+              },
+              control: {
+                fontFamily: 'Space Grotesk, sans-serif',
+                fontWeight: 600,
+                fontSize: rem(16),
+                color: 'var(--rar-text)',
+                padding: `${rem(18)} ${rem(20)}`,
+              },
+              content: {
+                padding: `${rem(4)} ${rem(20)} ${rem(20)}`,
+              },
+              chevron: {
+                color: 'var(--rar-amber)',
+              },
+            }}
+          >
+            <Accordion.Item value="q36">
+              <Accordion.Control icon={<IconInfoCircle size={18} color="var(--rar-amber)" />}>
+                View the Question and Response
+              </Accordion.Control>
+              <Accordion.Panel>
+                <Stack gap="md">
+                  <Box>
+                    <Text size="xs" fw={600} mb={4} style={{ color: 'var(--rar-text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', fontFamily: 'Space Grotesk, sans-serif' }}>
+                      Question
+                    </Text>
+                    <Text size="sm" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.7, fontStyle: 'italic' }}>
+                      {q36Content.question}
+                    </Text>
+                  </Box>
+                  <Box>
+                    <Text size="xs" fw={600} mb={4} style={{ color: 'var(--rar-text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', fontFamily: 'Space Grotesk, sans-serif' }}>
+                      Response
+                    </Text>
+                    <Text size="sm" fw={500} style={{ color: 'var(--rar-text)', lineHeight: 1.7 }}>
+                      {q36Content.response}
+                    </Text>
+                  </Box>
+                </Stack>
+              </Accordion.Panel>
+            </Accordion.Item>
+          </Accordion>
+        </Box>
+      </ContentSection>
+
+      {/* ── Final CTA ──────────────────────────────────────── */}
+      <ContentSection alt py={80}>
+        <Box ta="center" maw={600} mx="auto">
+          <Title
+            order={2}
+            mb="md"
+            style={{ letterSpacing: '-0.015em' }}
+          >
+            {ctaContent.headline}
+          </Title>
+          <Text
+            size="lg"
+            mb="xl"
+            style={{ color: 'var(--rar-text-dim)', lineHeight: 1.65 }}
+          >
+            {ctaContent.subtext}
+          </Text>
+          <Group justify="center" gap="md" mb="xl">
+            <Button
+              component={Link}
+              to="/contact"
+              variant="filled"
+              color="denim"
+              size="lg"
+              rightSection={<IconArrowRight size={18} />}
+              style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600 }}
+            >
+              Request a Technical Discussion
+            </Button>
+          </Group>
+          <Box
+            style={{
+              backgroundColor: 'var(--rar-panel)',
+              border: '1px solid var(--rar-border)',
+              borderRadius: rem(10),
+              padding: `${rem(20)} ${rem(24)}`,
+              display: 'inline-block',
+            }}
+          >
+            <Text fw={600} style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+              {ctaContent.contactName}
+            </Text>
+            <Text size="sm" style={{ color: 'var(--rar-text-dim)' }}>
+              {ctaContent.contactPhone} ·{' '}
+              <a
+                href={`mailto:${ctaContent.contactEmail}`}
+                style={{ color: 'var(--rar-denim)', textDecoration: 'none' }}
+              >
+                {ctaContent.contactEmail}
+              </a>
+            </Text>
           </Box>
-        </ContentSection>
-      </Box>
+        </Box>
+      </ContentSection>
     </>
   );
 }

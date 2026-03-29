@@ -1,4 +1,4 @@
-import { Accordion, Text, rem } from '@mantine/core';
+import { Accordion, List, Text, rem } from '@mantine/core';
 import type { AccordionItemData } from '../../content/landfillSolar';
 
 interface FaqAccordionProps {
@@ -50,6 +50,21 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
                 {paragraph}
               </Text>
             ))}
+            {item.bullets && item.bullets.length > 0 && (
+              <List
+                mt="md"
+                spacing={6}
+                size="sm"
+                styles={{
+                  itemWrapper: { color: 'var(--rar-text-dim)' },
+                  itemLabel: { color: 'var(--rar-text-dim)' },
+                }}
+              >
+                {item.bullets.map((bullet, i) => (
+                  <List.Item key={i}>{bullet}</List.Item>
+                ))}
+              </List>
+            )}
           </Accordion.Panel>
         </Accordion.Item>
       ))}

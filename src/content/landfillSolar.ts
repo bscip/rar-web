@@ -95,15 +95,15 @@ export const glanceCards: GlanceCard[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// Anchor navigation items
+// Anchor navigation items (used for both nav cards and sticky strip)
 // ---------------------------------------------------------------------------
 
 export const anchorNav = [
-  { label: 'Performance & Design', anchor: 'performance-design' },
-  { label: 'Construction & Execution', anchor: 'construction-execution' },
-  { label: 'Procurement, Cost & Schedule', anchor: 'procurement-cost' },
-  { label: 'Community & Site Fit', anchor: 'community-site' },
-  { label: 'Readiness & Support', anchor: 'readiness-support' },
+  { label: 'Performance & Design', anchor: 'performance-design', desc: 'Cap protection, density, wind/snow, and module compatibility.' },
+  { label: 'Construction & Execution', anchor: 'construction-execution', desc: 'Two-component system, on-site roll forming, real-time adaptability.' },
+  { label: 'Procurement, Cost & Schedule', anchor: 'procurement-cost', desc: 'Early procurement, ITC timing, and total installed cost.' },
+  { label: 'Community & Site Fit', anchor: 'community-site', desc: 'Low-profile design, neighborhood fit, optional ecological enhancements.' },
+  { label: 'Readiness & Support', anchor: 'readiness-support', desc: 'TRL 8, UL2702 certified, pilot availability, and bidder support.' },
 ];
 
 // ---------------------------------------------------------------------------

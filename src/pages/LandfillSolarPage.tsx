@@ -6,14 +6,13 @@ import {
   Button,
   Group,
   Image,
-  List,
   SimpleGrid,
   Stack,
   Text,
   Title,
   rem,
 } from '@mantine/core';
-import { IconArrowRight, IconCheck, IconInfoCircle } from '@tabler/icons-react';
+import { IconArrowRight, IconInfoCircle } from '@tabler/icons-react';
 import { PageHero } from '../components/site/PageHero';
 import { SectionHeading } from '../components/site/SectionHeading';
 import { ContentSection } from '../components/site/ContentSection';
@@ -22,11 +21,7 @@ import { ProcessComparison } from '../components/marketing/ProcessComparison';
 import { MetricsComparison } from '../components/marketing/MetricsComparison';
 import {
   heroContent,
-  credibilityTags,
-  glanceCards,
   anchorNav,
-  prioritiesContent,
-  priorityItems,
   accordionGroups,
   processComparison,
   metricsComparison,
@@ -34,7 +29,7 @@ import {
   ctaContent,
 } from '../content/landfillSolar';
 
-function TechImage({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
+function TechImage({ src, alt, caption, maxH }: { src: string; alt: string; caption?: string; maxH?: number }) {
   return (
     <Box
       style={{
@@ -44,7 +39,7 @@ function TechImage({ src, alt, caption }: { src: string; alt: string; caption?: 
         backgroundColor: '#fff',
       }}
     >
-      <Image src={src} alt={alt} fit="contain" />
+      <Image src={src} alt={alt} fit="contain" mah={maxH ?? 260} p={12} />
       {caption && (
         <Text
           size="xs"
@@ -105,8 +100,8 @@ export function LandfillSolarPage() {
         }
       />
 
-      {/* ── Second intro + credibility tags ─────────────────── */}
-      <ContentSection py={48}>
+      {/* ── Intro + section navigation cards ─────────────────── */}
+      <ContentSection py={56}>
         <Text
           size="lg"
           mb="xl"
@@ -116,83 +111,57 @@ export function LandfillSolarPage() {
           {heroContent.intro[1]}
         </Text>
 
-        <Group gap="sm" wrap="wrap">
-          {credibilityTags.map((tag) => (
+        <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="md">
+          {anchorNav.map((item) => (
             <Box
-              key={tag.label}
+              key={item.anchor}
+              component="a"
+              href={`#${item.anchor}`}
+              className="rar-panel rar-card-hover"
               style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: rem(6),
-                backgroundColor: 'var(--rar-panel)',
-                border: '1px solid var(--rar-border)',
-                borderRadius: 6,
-                padding: `${rem(6)} ${rem(14)}`,
+                padding: `${rem(20)} ${rem(22)}`,
+                textDecoration: 'none',
+                borderLeft: '3px solid var(--rar-amber)',
+                cursor: 'pointer',
               }}
             >
-              <IconCheck size={14} color="var(--rar-amber)" />
               <Text
-                size="sm"
-                fw={500}
-                style={{
-                  fontFamily: 'Space Grotesk, sans-serif',
-                  color: 'var(--rar-text)',
-                }}
-              >
-                {tag.label}
-              </Text>
-            </Box>
-          ))}
-        </Group>
-      </ContentSection>
-
-      {/* ── At-a-Glance Cards ──────────────────────────────── */}
-      <ContentSection alt py={72}>
-        <SectionHeading
-          label="At a glance"
-          title="RAR at a Glance"
-          subtitle="Six things to know about Roll-A-Rack in under a minute."
-        />
-        <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="lg">
-          {glanceCards.map((card) => (
-            <Box
-              key={card.title}
-              className="rar-panel rar-card-hover"
-              style={{ padding: `${rem(24)} ${rem(24)}` }}
-            >
-              <Text
+                size="xs"
                 fw={600}
-                mb={6}
+                mb={4}
                 style={{
                   fontFamily: 'Space Grotesk, sans-serif',
-                  color: 'var(--rar-text)',
+                  textTransform: 'uppercase' as const,
+                  letterSpacing: '0.08em',
+                  color: 'var(--rar-amber-ink)',
                 }}
               >
-                {card.title}
+                {item.label}
               </Text>
-              <Text size="sm" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.65 }}>
-                {card.body}
+              <Text size="sm" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.55 }}>
+                {item.desc}
               </Text>
             </Box>
           ))}
         </SimpleGrid>
       </ContentSection>
 
-      {/* ── Anchor Navigation Strip ────────────────────────── */}
+      {/* ── Sticky section nav ─────────────────────────────── */}
       <Box
         style={{
+          borderTop: '1px solid var(--rar-border)',
           borderBottom: '1px solid var(--rar-border)',
-          backgroundColor: 'var(--rar-bg)',
+          backgroundColor: 'var(--rar-panel)',
           position: 'sticky',
           top: 80,
           zIndex: 90,
         }}
       >
         <Group
-          gap="xs"
+          gap={4}
           wrap="wrap"
           justify="center"
-          py={14}
+          py={10}
           px="md"
           maw={1200}
           mx="auto"
@@ -203,12 +172,13 @@ export function LandfillSolarPage() {
               component="a"
               href={`#${item.anchor}`}
               variant="subtle"
-              color="gray"
+              color="dark"
               size="compact-sm"
               style={{
                 fontFamily: 'Space Grotesk, sans-serif',
-                fontWeight: 500,
+                fontWeight: 600,
                 fontSize: rem(13),
+                letterSpacing: '0.01em',
               }}
             >
               {item.label}
@@ -216,45 +186,6 @@ export function LandfillSolarPage() {
           ))}
         </Group>
       </Box>
-
-      {/* ── Priorities ─────────────────────────────────────── */}
-      <ContentSection py={72}>
-        <Box maw={700}>
-          <SectionHeading
-            label="Project context"
-            title={prioritiesContent.title}
-          />
-          <Text
-            size="lg"
-            mb="xl"
-            style={{ color: 'var(--rar-text-dim)', lineHeight: 1.75 }}
-          >
-            {prioritiesContent.body}
-          </Text>
-          <List
-            spacing="sm"
-            icon={
-              <Box
-                style={{
-                  width: rem(8),
-                  height: rem(8),
-                  borderRadius: '50%',
-                  backgroundColor: 'var(--rar-amber)',
-                  marginTop: rem(8),
-                }}
-              />
-            }
-          >
-            {priorityItems.map((item) => (
-              <List.Item key={item.text}>
-                <Text fw={500} style={{ color: 'var(--rar-text)', lineHeight: 1.65 }}>
-                  {item.text}
-                </Text>
-              </List.Item>
-            ))}
-          </List>
-        </Box>
-      </ContentSection>
 
       {/* ── Grouped Accordion Sections ─────────────────────── */}
       {accordionGroups.map((group, gi) => (
@@ -272,7 +203,7 @@ export function LandfillSolarPage() {
 
             {/* Images for Performance & Design section */}
             {group.anchor === 'performance-design' && (
-              <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg" mb="xl">
+              <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg" mb="xl" maw={700}>
                 <TechImage
                   src="/images/rar-tech-002a.png"
                   alt="Roll-A-Rack low-profile tilt design"
@@ -286,39 +217,45 @@ export function LandfillSolarPage() {
               </SimpleGrid>
             )}
 
-            {/* Images for Construction & Execution section */}
+            {/* Images before Construction & Execution accordion */}
             {group.anchor === 'construction-execution' && (
-              <>
-                <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg" mb="xl">
-                  <TechImage
-                    src="/images/rar-machine.jpg"
-                    alt="Roll-A-Rack portable roll-forming machine"
-                    caption="Portable roll-forming equipment brought directly to the project site"
-                  />
-                  <TechImage
-                    src="/images/rar-tech-001.png"
-                    alt="Roll-A-Rack system overview"
-                    caption="Two-component system: gutter channel + clamp bracket"
-                  />
-                </SimpleGrid>
-                <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg" mb="xl">
-                  <TechImage
-                    src="/images/rar-tech-003.png"
-                    alt="Roll-A-Rack channel dimensions"
-                    caption="Gutter channel cross-section and dimensions"
-                  />
-                  <TechImage
-                    src="/images/rar-tech-005.png"
-                    alt="Roll-A-Rack clamp detail"
-                    caption="Clamp bracket attachment detail"
-                  />
-                </SimpleGrid>
-              </>
+              <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg" mb="xl" maw={700}>
+                <TechImage
+                  src="/images/rar-machine.jpg"
+                  alt="Roll-A-Rack portable roll-forming machine"
+                  caption="Portable roll-forming equipment brought directly to the project site"
+                  maxH={220}
+                />
+                <TechImage
+                  src="/images/rar-tech-001.png"
+                  alt="Roll-A-Rack system overview"
+                  caption="Two-component system: gutter channel + clamp bracket"
+                  maxH={220}
+                />
+              </SimpleGrid>
             )}
 
             <Box maw={800}>
               <FaqAccordion items={group.items} />
             </Box>
+
+            {/* Detail images after Construction & Execution accordion */}
+            {group.anchor === 'construction-execution' && (
+              <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg" mt="xl" maw={700}>
+                <TechImage
+                  src="/images/rar-tech-003.png"
+                  alt="Roll-A-Rack channel dimensions"
+                  caption="Gutter channel cross-section and dimensions"
+                  maxH={220}
+                />
+                <TechImage
+                  src="/images/rar-tech-005.png"
+                  alt="Roll-A-Rack clamp detail"
+                  caption="Clamp bracket attachment detail"
+                  maxH={220}
+                />
+              </SimpleGrid>
+            )}
           </ContentSection>
         </Box>
       ))}

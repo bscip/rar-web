@@ -3,8 +3,10 @@ import { Link } from '@tanstack/react-router';
 import {
   Box,
   Button,
+  Group,
   Text,
   SimpleGrid,
+  Stack,
   Title,
   rem,
 } from '@mantine/core';
@@ -14,6 +16,7 @@ import {
   IconBuildingFactory2,
   IconPlant2,
   IconUsers,
+  IconCheck,
 } from '@tabler/icons-react';
 import { PageHero } from '../components/site/PageHero';
 import { SectionHeading } from '../components/site/SectionHeading';
@@ -25,12 +28,12 @@ const PARTNER_TYPES = [
     icon: <IconHelmet size={22} />,
     color: 'var(--rar-amber)',
     colorBg: 'rgba(228, 166, 0, 0.1)',
-    label: 'Installers / EPCs',
-    title: 'Projects that push the limits of conventional racking.',
+    label: 'EPCs / Design-Build Bidders',
+    title: 'Evaluating racking for constrained or sensitive sites.',
     bullets: [
-      'Looking for alternative racking approaches',
-      'Working on constrained or complex sites',
-      'Open to pilot deployments on suitable projects',
+      'Bidding on landfill, brownfield, or capped-site projects',
+      'Looking for racking that can support cap protection and runoff management',
+      'Open to differentiated or complementary racking approaches',
     ],
   },
   {
@@ -40,21 +43,21 @@ const PARTNER_TYPES = [
     label: 'Developers',
     title: 'Sites where land constraints change the equation.',
     bullets: [
-      'Projects with land constraints or irregular terrain',
+      'Landfill, brownfield, or land-constrained solar projects',
       'Exploring agrivoltaic or dual-use configurations',
-      'Evaluating ways to improve site economics',
+      'Evaluating ways to maximize usable site capacity',
     ],
   },
   {
     icon: <IconPlant2 size={22} />,
     color: 'var(--rar-amber)',
     colorBg: 'rgba(228, 166, 0, 0.08)',
-    label: 'Pilot Partners',
-    title: 'Sites suitable for real-world evaluation.',
+    label: 'Municipalities / Public Entities',
+    title: 'Public-sector solar with community and site sensitivity.',
     bullets: [
-      'Sites appropriate for testing new deployment approaches',
-      'Willing to collaborate on evaluation and documentation',
-      'Interested in being part of early deployment case studies',
+      'Solar on public land with neighborhood visibility concerns',
+      'Projects requiring domestic-content or Buy American alignment',
+      'Interested in practical, low-disturbance deployment approaches',
     ],
   },
   {
@@ -62,11 +65,11 @@ const PARTNER_TYPES = [
     color: 'var(--rar-flame)',
     colorBg: 'rgba(255, 60, 0, 0.08)',
     label: 'Strategic Partners',
-    title: 'Manufacturing, distribution, or integration interest.',
+    title: 'Manufacturing, engineering, or integration collaboration.',
     bullets: [
       'Manufacturing or supply chain alignment',
-      'Distribution or integration opportunities',
-      'Long-term collaboration potential',
+      'Engineering or integration collaboration',
+      'Long-term deployment or distribution partnership',
     ],
   },
 ];
@@ -253,6 +256,67 @@ export function PartnersPage() {
         >
           Designed for real-world deployment, not theoretical exploration.
         </Text>
+      </ContentSection>
+
+      {/* Good near-term fit */}
+      <ContentSection py={72}>
+        <SectionHeading
+          label="Good near-term fit"
+          title="Where Roll-A-Rack may be especially relevant."
+          maw={600}
+        />
+        <Stack gap="sm">
+          {[
+            'Landfill and capped sites',
+            'Brownfields and remediated land',
+            'Public-sector solar with neighborhood sensitivity',
+            'Agrivoltaic and farm applications',
+            'Projects where logistics simplicity matters',
+          ].map((item) => (
+            <Group key={item} gap="sm" wrap="nowrap">
+              <IconCheck size={16} color="var(--rar-amber)" style={{ flexShrink: 0 }} />
+              <Text size="lg" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.65 }}>
+                {item}
+              </Text>
+            </Group>
+          ))}
+        </Stack>
+      </ContentSection>
+
+      {/* Landfill solar link */}
+      <ContentSection alt py={64}>
+        <Box
+          style={{
+            backgroundColor: 'var(--rar-bg)',
+            border: '1px solid var(--rar-border)',
+            borderRadius: 12,
+            padding: `${rem(36)} ${rem(36)}`,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: rem(12),
+          }}
+        >
+          <span className="rar-label">Current focus</span>
+          <Title order={4} style={{ color: 'var(--rar-text)' }}>
+            Landfill and constrained-site solar
+          </Title>
+          <Text size="md" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.65, maxWidth: 560 }}>
+            Learn why Roll-A-Rack may be a strong fit for landfill, brownfield, and cap-sensitive solar projects.
+          </Text>
+          <Button
+            component={Link}
+            to="/landfill-solar"
+            variant="filled"
+            color="denim"
+            size="sm"
+            mt="xs"
+            rightSection={<IconArrowRight size={16} />}
+            style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600 }}
+          >
+            Explore why it fits
+          </Button>
+        </Box>
       </ContentSection>
 
       {/* CTA */}

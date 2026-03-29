@@ -19,11 +19,18 @@ import {
 } from '@tabler/icons-react';
 import { SectionHeading } from '../components/site/SectionHeading';
 import { ContentSection } from '../components/site/ContentSection';
-import { StatStrip } from '../components/marketing/StatStrip';
 import { AudienceSplit } from '../components/marketing/AudienceSplit';
 import { CtaCard } from '../components/marketing/CtaCard';
 import { FeatureGrid } from '../components/marketing/FeatureGrid';
-import { heroStats, credibilityItems, solutionFeatures } from '../content/site';
+import { VideoFeature } from '../components/marketing/VideoFeature';
+import { credibilityItems, solutionFeatures } from '../content/site';
+
+const HERO_HIGHLIGHTS = [
+  '~50% less land required',
+  'Row gap in inches, not feet',
+  'On-site portable roll forming',
+  'Patent-backed technology',
+];
 
 const SOLUTION_FEATURES = solutionFeatures.map((f, i) => ({
   ...f,
@@ -96,14 +103,14 @@ export function HomePage() {
                 color: 'var(--rar-text)',
               }}
             >
-              Solar racking that cuts land use, simplifies installation, and fits where conventional systems struggle.
+              Solar racking for landfill, brownfield, agricultural, and land-sensitive sites.
             </Title>
             <Text
               size="xl"
               mb="xl"
               style={{ color: 'var(--rar-text-dim)', maxWidth: 560, lineHeight: 1.65 }}
             >
-              Roll-A-Rack is a land-based solar racking system designed to reduce row spacing, manage rainwater, and support faster, more adaptable deployment.
+              Roll-A-Rack combines tighter row spacing, on-site roll forming, and rainwater-aware channel design to support lower-disturbance solar deployment on constrained sites.
             </Text>
             <Group gap="md" mb={56}>
               <Button
@@ -129,17 +136,53 @@ export function HomePage() {
               </Button>
               <Button
                 component={Link}
-                to="/partners"
+                to="/landfill-solar"
                 variant="outline"
-                color="flame"
+                color="gray"
                 size="lg"
                 style={{ fontFamily: 'Space Grotesk, sans-serif' }}
               >
-                Partners
+                Landfill & Constrained-Site Solar
               </Button>
             </Group>
 
-            <StatStrip stats={heroStats} />
+            <Group gap="sm" wrap="wrap">
+              {HERO_HIGHLIGHTS.map((h) => (
+                <Box
+                  key={h}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: rem(8),
+                    backgroundColor: 'rgba(255,255,255,0.85)',
+                    border: '1px solid var(--rar-border)',
+                    borderRadius: 6,
+                    padding: `${rem(8)} ${rem(16)}`,
+                  }}
+                >
+                  <Box
+                    style={{
+                      width: rem(6),
+                      height: rem(6),
+                      borderRadius: '50%',
+                      backgroundColor: 'var(--rar-amber)',
+                      flexShrink: 0,
+                    }}
+                  />
+                  <Text
+                    size="sm"
+                    fw={500}
+                    style={{
+                      fontFamily: 'Space Grotesk, sans-serif',
+                      color: 'var(--rar-text)',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {h}
+                  </Text>
+                </Box>
+              ))}
+            </Group>
           </Box>
         </Container>
       </Box>
@@ -152,10 +195,10 @@ export function HomePage() {
             title="Solar development keeps running into a land-use wall."
           />
           <Text size="lg" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.75 }}>
-            Conventional row spacing consumes more land, increases friction in sensitive environments, and can make projects harder to permit or justify. This is especially important for farms and other sites where land use matters — where every foot of spacing between rows represents ground that can't be used for anything else.
+            Capped landfills, brownfields, and neighborhood-adjacent parcels demand more from a racking system than conventional row spacing allows. Runoff and erosion concerns, cap-integrity requirements, permitting friction, and community scrutiny all raise the bar.
           </Text>
           <Text size="lg" mt="lg" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.75 }}>
-            As solar deployment expands into land-constrained areas, the gap between what conventional racking demands and what sites can actually offer is only growing.
+            Meanwhile, conventional row spacing wastes usable acreage — every foot of gap between rows is ground that produces nothing. On constrained sites, that trade-off can make projects harder to justify or impossible to fit.
           </Text>
         </Box>
       </ContentSection>
@@ -165,14 +208,24 @@ export function HomePage() {
         <SectionHeading
           label="The Solution"
           title="A gutter-like racking approach built for land efficiency."
-          subtitle="Roll-A-Rack uses a channel-based system that reduces row spacing from feet to inches — while managing rainwater and supporting faster, more adaptable installation."
+          subtitle="Roll-A-Rack uses a channel-based system designed to reduce row spacing from feet to inches — while helping manage rainwater and supporting faster, more adaptable installation."
           maw={700}
         />
         <FeatureGrid features={SOLUTION_FEATURES} />
       </ContentSection>
 
-      {/* Audience split */}
+      {/* Video */}
       <ContentSection py={80}>
+        <VideoFeature
+          label="See the system"
+          title="A closer look at the on-site roll-forming approach."
+          body="The portable Roll-A-Rack machine forms structural channel components directly on site — reducing shipping complexity and giving project teams more flexibility in the field."
+          embedUrl="https://youtu.be/OAp-0qTner4"
+        />
+      </ContentSection>
+
+      {/* Audience split */}
+      <ContentSection alt py={80}>
         <SectionHeading
           label="Two paths forward"
           title="Who's this for?"
@@ -183,7 +236,7 @@ export function HomePage() {
       </ContentSection>
 
       {/* Credibility strip */}
-      <ContentSection alt py={72}>
+      <ContentSection py={72}>
         <SectionHeading
           label="Foundation"
           title="Not a concept. A developing platform."
@@ -195,7 +248,7 @@ export function HomePage() {
             <Box
               key={item.title}
               style={{
-                backgroundColor: 'var(--rar-bg)',
+                backgroundColor: 'var(--rar-panel)',
                 border: '1px solid var(--rar-border)',
                 borderRadius: 10,
                 padding: rem(24),
@@ -219,6 +272,48 @@ export function HomePage() {
             </Box>
           ))}
         </SimpleGrid>
+      </ContentSection>
+
+      {/* Featured: Landfill Solar */}
+      <ContentSection alt py={72}>
+        <Box
+          style={{
+            backgroundColor: 'var(--rar-bg)',
+            border: '1px solid var(--rar-border)',
+            borderRadius: 12,
+            padding: `${rem(48)} ${rem(40)}`,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: rem(16),
+          }}
+        >
+          <span className="rar-label">Current focus</span>
+          <Title
+            order={3}
+            style={{ letterSpacing: '-0.01em', color: 'var(--rar-text)' }}
+          >
+            Landfill and constrained-site solar
+          </Title>
+          <Text
+            size="lg"
+            style={{ color: 'var(--rar-text-dim)', lineHeight: 1.65, maxWidth: 600 }}
+          >
+            Landfill and land-constrained solar projects are a particularly strong fit for Roll-A-Rack's lower-disturbance, rainwater-aware racking approach.
+          </Text>
+          <Button
+            component={Link}
+            to="/landfill-solar"
+            variant="filled"
+            color="denim"
+            size="md"
+            mt="xs"
+            rightSection={<IconArrowRight size={16} />}
+            style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600 }}
+          >
+            Explore why it fits
+          </Button>
+        </Box>
       </ContentSection>
 
       {/* Final CTA */}

@@ -13,7 +13,7 @@ export function ContactPage() {
       <PageHero
         label="Contact"
         headline="Contact Roll-A-Rack."
-        subhead="Whether you are evaluating a pilot, an installation partnership, or an investment opportunity, we'd like to hear from you."
+        subhead="Whether you're evaluating a pilot, a landfill or brownfield project, or a broader deployment partnership, we'd like to hear from you."
         gridBg
       />
 

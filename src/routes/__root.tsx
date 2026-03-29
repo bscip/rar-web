@@ -14,7 +14,7 @@ export const Route = createRootRoute({
     <MantineProvider theme={theme} defaultColorScheme="light">
       <Box style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--rar-bg)' }}>
         <SiteHeader />
-        <Box component="main" style={{ flex: 1, paddingTop: 88 }}>
+        <Box component="main" style={{ flex: 1, paddingTop: 80 }}>
           <ErrorPage reset={reset} />
         </Box>
         <SiteFooter />
@@ -35,7 +35,7 @@ function NotFound() {
   return (
     <Box style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--rar-bg)' }}>
       <SiteHeader />
-      <Box component="main" style={{ flex: 1, paddingTop: 88 }}>
+      <Box component="main" style={{ flex: 1, paddingTop: 80 }}>
         <NotFoundPage />
       </Box>
       <SiteFooter />

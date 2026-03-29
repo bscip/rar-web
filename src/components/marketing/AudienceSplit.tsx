@@ -91,7 +91,7 @@ export function AudienceSplit() {
             component={Link}
             to="/partners"
             variant="outline"
-            color="flame"
+            color="gray"
             mt="xl"
             size="sm"
             style={{ alignSelf: 'flex-start' }}

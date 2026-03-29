@@ -23,6 +23,7 @@ import { Route as MarketingTermsRouteImport } from './routes/_marketing/terms'
 import { Route as MarketingTeamRouteImport } from './routes/_marketing/team'
 import { Route as MarketingPrivacyRouteImport } from './routes/_marketing/privacy'
 import { Route as MarketingPartnersRouteImport } from './routes/_marketing/partners'
+import { Route as MarketingLandfillSolarRouteImport } from './routes/_marketing/landfill-solar'
 import { Route as MarketingInstallationsRouteImport } from './routes/_marketing/installations'
 import { Route as MarketingForInstallersRouteImport } from './routes/_marketing/for-installers'
 import { Route as MarketingContactRouteImport } from './routes/_marketing/contact'
@@ -100,6 +101,11 @@ const MarketingPartnersRoute = MarketingPartnersRouteImport.update({
   path: '/partners',
   getParentRoute: () => MarketingRoute,
 } as any)
+const MarketingLandfillSolarRoute = MarketingLandfillSolarRouteImport.update({
+  id: '/landfill-solar',
+  path: '/landfill-solar',
+  getParentRoute: () => MarketingRoute,
+} as any)
 const MarketingInstallationsRoute = MarketingInstallationsRouteImport.update({
   id: '/installations',
   path: '/installations',
@@ -132,6 +138,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof MarketingContactRoute
   '/for-installers': typeof MarketingForInstallersRoute
   '/installations': typeof MarketingInstallationsRoute
+  '/landfill-solar': typeof MarketingLandfillSolarRoute
   '/partners': typeof MarketingPartnersRoute
   '/privacy': typeof MarketingPrivacyRoute
   '/team': typeof MarketingTeamRoute
@@ -149,6 +156,7 @@ export interface FileRoutesByTo {
   '/contact': typeof MarketingContactRoute
   '/for-installers': typeof MarketingForInstallersRoute
   '/installations': typeof MarketingInstallationsRoute
+  '/landfill-solar': typeof MarketingLandfillSolarRoute
   '/partners': typeof MarketingPartnersRoute
   '/privacy': typeof MarketingPrivacyRoute
   '/team': typeof MarketingTeamRoute
@@ -170,6 +178,7 @@ export interface FileRoutesById {
   '/_marketing/contact': typeof MarketingContactRoute
   '/_marketing/for-installers': typeof MarketingForInstallersRoute
   '/_marketing/installations': typeof MarketingInstallationsRoute
+  '/_marketing/landfill-solar': typeof MarketingLandfillSolarRoute
   '/_marketing/partners': typeof MarketingPartnersRoute
   '/_marketing/privacy': typeof MarketingPrivacyRoute
   '/_marketing/team': typeof MarketingTeamRoute
@@ -192,6 +201,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/for-installers'
     | '/installations'
+    | '/landfill-solar'
     | '/partners'
     | '/privacy'
     | '/team'
@@ -209,6 +219,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/for-installers'
     | '/installations'
+    | '/landfill-solar'
     | '/partners'
     | '/privacy'
     | '/team'
@@ -229,6 +240,7 @@ export interface FileRouteTypes {
     | '/_marketing/contact'
     | '/_marketing/for-installers'
     | '/_marketing/installations'
+    | '/_marketing/landfill-solar'
     | '/_marketing/partners'
     | '/_marketing/privacy'
     | '/_marketing/team'
@@ -348,6 +360,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketingPartnersRouteImport
       parentRoute: typeof MarketingRoute
     }
+    '/_marketing/landfill-solar': {
+      id: '/_marketing/landfill-solar'
+      path: '/landfill-solar'
+      fullPath: '/landfill-solar'
+      preLoaderRoute: typeof MarketingLandfillSolarRouteImport
+      parentRoute: typeof MarketingRoute
+    }
     '/_marketing/installations': {
       id: '/_marketing/installations'
       path: '/installations'
@@ -384,6 +403,7 @@ interface MarketingRouteChildren {
   MarketingContactRoute: typeof MarketingContactRoute
   MarketingForInstallersRoute: typeof MarketingForInstallersRoute
   MarketingInstallationsRoute: typeof MarketingInstallationsRoute
+  MarketingLandfillSolarRoute: typeof MarketingLandfillSolarRoute
   MarketingPartnersRoute: typeof MarketingPartnersRoute
   MarketingPrivacyRoute: typeof MarketingPrivacyRoute
   MarketingTeamRoute: typeof MarketingTeamRoute
@@ -396,6 +416,7 @@ const MarketingRouteChildren: MarketingRouteChildren = {
   MarketingContactRoute: MarketingContactRoute,
   MarketingForInstallersRoute: MarketingForInstallersRoute,
   MarketingInstallationsRoute: MarketingInstallationsRoute,
+  MarketingLandfillSolarRoute: MarketingLandfillSolarRoute,
   MarketingPartnersRoute: MarketingPartnersRoute,
   MarketingPrivacyRoute: MarketingPrivacyRoute,
   MarketingTeamRoute: MarketingTeamRoute,

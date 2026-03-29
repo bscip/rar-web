@@ -45,7 +45,7 @@ export function ContactPanel() {
               Get in touch
             </Title>
             <Text style={{ color: 'var(--rar-text-dim)', lineHeight: 1.7 }}>
-              Whether you're evaluating a pilot installation, exploring an installer partnership, or looking at strategic collaboration, we'd like to hear from you.
+              Whether you're evaluating a pilot, a landfill or brownfield project, or a broader deployment partnership, we'd like to hear from you.
             </Text>
           </Box>
 
@@ -93,10 +93,12 @@ export function ContactPanel() {
               </Text>
               <Stack gap="xs">
                 {[
-                  'Installer / pilot project opportunities',
-                  'Developer partnerships',
-                  'Partnership inquiries',
-                  'General questions about the technology',
+                  'Project evaluation',
+                  'Landfill / brownfield solar',
+                  'Pilot installation',
+                  'EPC / bidder discussion',
+                  'Strategic partnership',
+                  'Press / media',
                 ].map((item) => (
                   <Group key={item} gap="xs" wrap="nowrap">
                     <IconCheck size={14} color="var(--rar-amber)" style={{ flexShrink: 0 }} />
@@ -195,9 +197,12 @@ export function ContactPanel() {
                 placeholder="Select one"
                 required
                 data={[
-                  { value: 'Installer / project opportunity', label: 'Installer / project opportunity' },
-                  { value: 'Partnership inquiry', label: 'Partnership inquiry' },
-                  { value: 'General question', label: 'General question' },
+                  { value: 'Project evaluation', label: 'Project evaluation' },
+                  { value: 'Landfill / brownfield solar', label: 'Landfill / brownfield solar' },
+                  { value: 'Pilot installation', label: 'Pilot installation' },
+                  { value: 'EPC / bidder discussion', label: 'EPC / bidder discussion' },
+                  { value: 'Strategic partnership', label: 'Strategic partnership' },
+                  { value: 'Press / media', label: 'Press / media' },
                 ]}
                 value={form.subject}
                 onChange={(val) => setForm((f) => ({ ...f, subject: val ?? '' }))}

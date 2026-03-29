@@ -17,7 +17,7 @@ const NAV_LINKS = [
   { label: 'About', to: '/about' },
   { label: 'Installers', to: '/for-installers' },
   { label: 'Partners', to: '/partners' },
-  { label: 'Installations', to: '/installations' },
+  // { label: 'Installations', to: '/installations' },
   { label: 'Team', to: '/team' },
 ];
 
@@ -45,7 +45,7 @@ export function SiteHeader() {
           left: 0,
           right: 0,
           zIndex: 100,
-          height: rem(88),
+          height: rem(80),
           backgroundColor: transparent
             ? 'transparent'
             : 'rgba(255, 255, 255, 0.92)',
@@ -63,7 +63,7 @@ export function SiteHeader() {
               <img
                 src="/images/rar-logo-horizontal.svg"
                 alt="Roll-A-Rack"
-                style={{ height: 70, width: 'auto', display: 'block' }}
+                style={{ height: 60, width: 'auto', display: 'block' }}
               />
             </Anchor>
 

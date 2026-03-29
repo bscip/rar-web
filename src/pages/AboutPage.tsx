@@ -17,6 +17,7 @@ import { SectionHeading } from '../components/site/SectionHeading';
 import { ContentSection } from '../components/site/ContentSection';
 import { AudienceSplit } from '../components/marketing/AudienceSplit';
 import { FeatureGrid } from '../components/marketing/FeatureGrid';
+import { VideoFeature } from '../components/marketing/VideoFeature';
 
 const HOW_IT_WORKS = [
   {
@@ -142,8 +143,18 @@ export function AboutPage() {
         <FeatureGrid features={WHY_DIFFERENT} cols={{ base: 1, sm: 2, md: 3 }} />
       </ContentSection>
 
+      {/* Video */}
+      <ContentSection alt py={80}>
+        <VideoFeature
+          label="See the system"
+          title="A closer look at the on-site roll-forming approach."
+          body="The portable Roll-A-Rack machine forms structural channel components directly on site — reducing shipping complexity and giving project teams more flexibility in the field."
+          embedUrl="https://youtu.be/OAp-0qTner4"
+        />
+      </ContentSection>
+
       {/* Focus area */}
-      <ContentSection alt py={72}>
+      <ContentSection py={72}>
         <Box maw={640}>
           <SectionHeading label="Current focus" title="Land-based projects first." />
           <Text size="lg" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.75 }}>

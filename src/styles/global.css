@@ -11,16 +11,17 @@
   --rar-bg: #ffffff;
   --rar-panel: #f5f6f8;
   --rar-panel-alt: #eef0f2;
-  --rar-border: rgba(0, 0, 0, 0.08);
-  --rar-border-strong: rgba(0, 0, 0, 0.14);
+  --rar-border: rgba(0, 0, 0, 0.10);
+  --rar-border-strong: rgba(0, 0, 0, 0.18);
   --rar-amber: #e4a600;
+  --rar-amber-ink: #9a6f00;
   --rar-flame: #ff3c00;
   --rar-denim: #4a7ba0;
   --rar-charcoal: #4b4f54;
   --rar-silver: #8a8f96;
   --rar-text: #1a1c1e;
-  --rar-text-dim: rgba(26, 28, 30, 0.62);
-  --rar-text-muted: rgba(26, 28, 30, 0.38);
+  --rar-text-dim: rgba(26, 28, 30, 0.74);
+  --rar-text-muted: rgba(26, 28, 30, 0.52);
 }
 
 *,
@@ -65,7 +66,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--rar-amber);
+  color: var(--rar-amber-ink);
 }
 
 /* Card hover lift */

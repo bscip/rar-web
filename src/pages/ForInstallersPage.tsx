@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Text,
+  Title,
   SimpleGrid,
   rem,
 } from '@mantine/core';
@@ -36,11 +37,12 @@ const BENEFITS_WITH_ICONS = installerBenefits.map((b, i) => ({
 }));
 
 const GOOD_FIT = [
-  { icon: <IconLeaf size={20} />, title: 'Farms & agrivoltaic-adjacent sites', body: "Projects where land under and around the array is still valued. Roll-A-Rack's spacing reduction directly improves the land use story." },
-  { icon: <IconMapPin size={20} />, title: 'Landfills', body: 'Capped landfill sites with surface constraints benefit from ballasted, low-penetration racking and tight spacing.' },
-  { icon: <IconMapPin size={20} />, title: 'Brownfields', body: 'Remediated land with area constraints. Less sprawl means more of the usable surface goes toward production.' },
-  { icon: <IconChartBar size={20} />, title: 'Land-sensitive commercial sites', body: 'Sites where land-use agreements, zoning, or environmental requirements create friction with wide-row conventional systems.' },
-  { icon: <IconHelmet size={20} />, title: 'Pilot-friendly projects', body: "Owners who understand the early-adopter context and are interested in being part of documenting the technology's real-world performance." },
+  { icon: <IconMapPin size={20} />, title: 'Landfills & capped sites', body: 'Cap-sensitive sites where low-disturbance deployment, ballasted racking, and tight spacing can help protect the surface while maximizing usable capacity.' },
+  { icon: <IconMapPin size={20} />, title: 'Brownfields', body: 'Remediated land with area constraints. On-site roll forming may reduce freight and handling headaches compared to rigid prefabricated alternatives.' },
+  { icon: <IconLeaf size={20} />, title: 'Farms & agrivoltaic sites', body: "Projects where land under and around the array is still valued. Roll-A-Rack's spacing reduction directly improves the land use story." },
+  { icon: <IconChartBar size={20} />, title: 'Land-sensitive commercial sites', body: 'Sites where zoning, environmental requirements, or neighborhood sensitivity create friction with wide-row conventional systems.' },
+  { icon: <IconTool size={20} />, title: 'Logistics-constrained projects', body: 'On-site roll forming allows adaptation when field conditions change — reducing rework and material waste compared to rigid pre-formed components.' },
+  { icon: <IconHelmet size={20} />, title: 'Pilot-friendly projects', body: 'Early partners help shape deployment data and case studies. Direct access to the team and influence over how the system develops.' },
 ];
 
 const COLLABORATION_STEPS = [
@@ -61,19 +63,31 @@ export function ForInstallersPage() {
       <PageHero
         label="For Installers"
         headline="Bring Roll-A-Rack to real projects."
-        subhead="We are looking for installer and development partners who want to evaluate a differentiated land-based racking system through pilot and beta deployments."
+        subhead="We are looking for installer and EPC partners who want to evaluate a differentiated racking system on constrained sites — landfills, brownfields, and projects where logistics simplicity and field adaptability matter."
         ctas={
-          <Button
-            component={Link}
-            to="/contact"
-            variant="filled"
-            color="denim"
-            size="lg"
-            rightSection={<IconArrowRight size={18} />}
-            style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600 }}
-          >
-            Contact Roll-A-Rack
-          </Button>
+          <>
+            <Button
+              component={Link}
+              to="/contact"
+              variant="filled"
+              color="denim"
+              size="lg"
+              rightSection={<IconArrowRight size={18} />}
+              style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600 }}
+            >
+              Contact Roll-A-Rack
+            </Button>
+            <Button
+              component={Link}
+              to="/landfill-solar"
+              variant="outline"
+              color="gray"
+              size="lg"
+              style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+            >
+              Landfill & Constrained-Site Solar
+            </Button>
+          </>
         }
         gridBg
       />
@@ -160,8 +174,44 @@ export function ForInstallersPage() {
         </Box>
       </ContentSection>
 
+      {/* Landfill solar link */}
+      <ContentSection py={64}>
+        <Box
+          style={{
+            backgroundColor: 'var(--rar-panel)',
+            border: '1px solid var(--rar-border)',
+            borderRadius: 12,
+            padding: `${rem(36)} ${rem(36)}`,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: rem(12),
+          }}
+        >
+          <span className="rar-label">Current focus</span>
+          <Title order={4} style={{ color: 'var(--rar-text)' }}>
+            Landfill and constrained-site solar
+          </Title>
+          <Text size="md" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.65, maxWidth: 560 }}>
+            See why Roll-A-Rack may be especially relevant for landfill, brownfield, and cap-sensitive solar projects.
+          </Text>
+          <Button
+            component={Link}
+            to="/landfill-solar"
+            variant="filled"
+            color="denim"
+            size="sm"
+            mt="xs"
+            rightSection={<IconArrowRight size={16} />}
+            style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600 }}
+          >
+            Explore why it fits
+          </Button>
+        </Box>
+      </ContentSection>
+
       {/* Final CTA */}
-      <ContentSection py={80}>
+      <ContentSection alt py={80}>
         <CtaCard
           headline="Interested in piloting Roll-A-Rack on a project?"
           subtext="If you're working on a land-sensitive or land-constrained solar project, let's talk about whether it's a fit."

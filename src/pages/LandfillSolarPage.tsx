@@ -1,11 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import {
   Accordion,
   Box,
   Button,
+  CloseButton,
   Group,
   Image,
+  Modal,
   SimpleGrid,
   Stack,
   Text,
@@ -30,33 +32,100 @@ import {
 } from '../content/landfillSolar';
 
 function TechImage({ src, alt, caption, maxH }: { src: string; alt: string; caption?: string; maxH?: number }) {
+  const [open, setOpen] = useState(false);
+
   return (
-    <Box
-      style={{
-        border: '1px solid var(--rar-border)',
-        borderRadius: rem(10),
-        overflow: 'hidden',
-        backgroundColor: '#fff',
-      }}
-    >
-      <Image src={src} alt={alt} fit="contain" mah={maxH ?? 260} p={12} />
-      {caption && (
-        <Text
-          size="xs"
-          ta="center"
-          py={8}
-          px={12}
+    <>
+      <Box
+        onClick={() => setOpen(true)}
+        style={{
+          border: '1px solid var(--rar-border)',
+          borderRadius: rem(10),
+          overflow: 'hidden',
+          backgroundColor: '#fff',
+          cursor: 'zoom-in',
+        }}
+      >
+        <Image src={src} alt={alt} fit="contain" mah={maxH ?? 260} p={12} />
+        {caption && (
+          <Text
+            size="xs"
+            ta="center"
+            py={8}
+            px={12}
+            style={{
+              color: 'var(--rar-text-muted)',
+              fontFamily: 'Space Grotesk, sans-serif',
+              borderTop: '1px solid var(--rar-border)',
+              backgroundColor: 'var(--rar-panel)',
+            }}
+          >
+            {caption}
+          </Text>
+        )}
+      </Box>
+
+      <Modal
+        opened={open}
+        onClose={() => setOpen(false)}
+        size="xl"
+        centered
+        withCloseButton={false}
+        padding={0}
+        radius="md"
+        overlayProps={{ backgroundOpacity: 0.65, blur: 3 }}
+        styles={{
+          body: { padding: 0 },
+          content: { backgroundColor: 'transparent', boxShadow: 'none' },
+        }}
+      >
+        <Box
           style={{
-            color: 'var(--rar-text-muted)',
-            fontFamily: 'Space Grotesk, sans-serif',
-            borderTop: '1px solid var(--rar-border)',
-            backgroundColor: 'var(--rar-panel)',
+            backgroundColor: '#fff',
+            borderRadius: rem(10),
+            overflow: 'hidden',
+            border: '1px solid var(--rar-border)',
+            position: 'relative',
           }}
         >
-          {caption}
-        </Text>
-      )}
-    </Box>
+          <CloseButton
+            onClick={() => setOpen(false)}
+            size="lg"
+            style={{
+              position: 'absolute',
+              top: rem(10),
+              right: rem(10),
+              zIndex: 10,
+              backgroundColor: 'rgba(255,255,255,0.85)',
+              borderRadius: '50%',
+            }}
+          />
+          <Image
+            src={src}
+            alt={alt}
+            fit="contain"
+            p="md"
+            style={{ maxHeight: '80vh' }}
+          />
+          {caption && (
+            <Text
+              size="sm"
+              ta="center"
+              py={12}
+              px={16}
+              style={{
+                color: 'var(--rar-text-dim)',
+                fontFamily: 'Space Grotesk, sans-serif',
+                borderTop: '1px solid var(--rar-border)',
+                backgroundColor: 'var(--rar-panel)',
+              }}
+            >
+              {caption}
+            </Text>
+          )}
+        </Box>
+      </Modal>
+    </>
   );
 }
 

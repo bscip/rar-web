@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import {
-  Accordion,
   Box,
   Button,
   CloseButton,
   Group,
   Image,
+  List,
   Modal,
   SimpleGrid,
   Stack,
@@ -14,24 +14,37 @@ import {
   Title,
   rem,
 } from '@mantine/core';
-import { IconArrowRight, IconInfoCircle } from '@tabler/icons-react';
+import { IconArrowRight } from '@tabler/icons-react';
 import { PageHero } from '../components/site/PageHero';
 import { SectionHeading } from '../components/site/SectionHeading';
 import { ContentSection } from '../components/site/ContentSection';
-import { FaqAccordion } from '../components/marketing/FaqAccordion';
 import { ProcessComparison } from '../components/marketing/ProcessComparison';
 import { MetricsComparison } from '../components/marketing/MetricsComparison';
 import {
   heroContent,
   anchorNav,
-  accordionGroups,
+  designBuildContent,
   processComparison,
+  densityContent,
+  fastInstallContent,
+  metricsTitle,
   metricsComparison,
-  q36Content,
-  ctaContent,
+  neighborhoodContent,
 } from '../content/landfillSolar';
 
-function TechImage({ src, alt, caption, maxH }: { src: string; alt: string; caption?: string; maxH?: number }) {
+// ─── Zoomable tech image ──────────────────────────────────────────────────────
+
+function TechImage({
+  src,
+  alt,
+  caption,
+  maxH,
+}: {
+  src: string;
+  alt: string;
+  caption?: string;
+  maxH?: number;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -46,7 +59,7 @@ function TechImage({ src, alt, caption, maxH }: { src: string; alt: string; capt
           cursor: 'zoom-in',
         }}
       >
-        <Image src={src} alt={alt} fit="contain" mah={maxH ?? 260} p={12} />
+        <Image src={src} alt={alt} fit="contain" mah={maxH ?? 240} p={12} />
         {caption && (
           <Text
             size="xs"
@@ -100,13 +113,7 @@ function TechImage({ src, alt, caption, maxH }: { src: string; alt: string; capt
               borderRadius: '50%',
             }}
           />
-          <Image
-            src={src}
-            alt={alt}
-            fit="contain"
-            p="md"
-            style={{ maxHeight: '80vh' }}
-          />
+          <Image src={src} alt={alt} fit="contain" p="md" style={{ maxHeight: '80vh' }} />
           {caption && (
             <Text
               size="sm"
@@ -129,6 +136,8 @@ function TechImage({ src, alt, caption, maxH }: { src: string; alt: string; capt
   );
 }
 
+// ─── Page ─────────────────────────────────────────────────────────────────────
+
 export function LandfillSolarPage() {
   useEffect(() => {
     document.title = 'Landfill & Constrained-Site Solar — Roll-A-Rack';
@@ -136,83 +145,93 @@ export function LandfillSolarPage() {
 
   return (
     <>
-      {/* ── Hero ────────────────────────────────────────────── */}
+      {/* ── Hero / Intro ────────────────────────────────────── */}
       <PageHero
         label={heroContent.eyebrow}
         headline={heroContent.headline}
-        subhead={heroContent.intro[0]}
+        subhead={heroContent.tagline}
         gridBg
-        ctas={
-          <>
-            <Button
-              component={Link}
-              to="/contact"
-              variant="filled"
-              color="denim"
-              size="lg"
-              rightSection={<IconArrowRight size={18} />}
-              style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600 }}
-            >
-              {heroContent.ctaPrimary}
-            </Button>
-            <Button
-              component={Link}
-              to="/contact"
-              variant="outline"
-              color="gray"
-              size="lg"
-              style={{ fontFamily: 'Space Grotesk, sans-serif' }}
-            >
-              {heroContent.ctaSecondary}
-            </Button>
-          </>
-        }
       />
 
-      {/* ── Intro + section navigation cards ─────────────────── */}
+      {/* ── TOC + Contact ───────────────────────────────────── */}
       <ContentSection py={56}>
-        <Text
-          size="lg"
-          mb="xl"
-          maw={700}
-          style={{ color: 'var(--rar-text-dim)', lineHeight: 1.7 }}
-        >
-          {heroContent.intro[1]}
-        </Text>
+        <Group gap={48} align="flex-start" wrap="wrap">
 
-        <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="md">
-          {anchorNav.map((item) => (
-            <Box
-              key={item.anchor}
-              component="a"
-              href={`#${item.anchor}`}
-              className="rar-panel rar-card-hover"
+          {/* TOC */}
+          <Box style={{ flex: 1, minWidth: rem(280) }}>
+            <Text
+              fw={600}
+              mb="md"
               style={{
-                padding: `${rem(20)} ${rem(22)}`,
-                textDecoration: 'none',
-                borderLeft: '3px solid var(--rar-amber)',
-                cursor: 'pointer',
+                fontFamily: 'Space Grotesk, sans-serif',
+                color: 'var(--rar-text)',
               }}
             >
-              <Text
-                size="xs"
-                fw={600}
-                mb={4}
-                style={{
-                  fontFamily: 'Space Grotesk, sans-serif',
-                  textTransform: 'uppercase' as const,
-                  letterSpacing: '0.08em',
-                  color: 'var(--rar-amber-ink)',
-                }}
+              {heroContent.tocLabel}
+            </Text>
+            <List
+              type="ordered"
+              spacing={8}
+              styles={{ itemWrapper: { color: 'var(--rar-text-dim)' } }}
+            >
+              {heroContent.tocItems.map((item, i) => (
+                <List.Item key={i}>
+                  <Text
+                    component="a"
+                    href={`#${anchorNav[i]?.anchor ?? ''}`}
+                    size="sm"
+                    fw={500}
+                    style={{
+                      color: 'var(--rar-denim)',
+                      textDecoration: 'none',
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {item}
+                  </Text>
+                </List.Item>
+              ))}
+            </List>
+          </Box>
+
+          {/* Contact */}
+          <Box
+            style={{
+              flex: '0 0 auto',
+              minWidth: rem(260),
+              backgroundColor: 'var(--rar-panel)',
+              border: '1px solid var(--rar-border)',
+              borderLeft: '3px solid var(--rar-amber)',
+              borderRadius: rem(10),
+              padding: `${rem(22)} ${rem(24)}`,
+            }}
+          >
+            <Text fw={600} mb="sm" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+              {heroContent.contactLabel}
+            </Text>
+            <List spacing={6} mb="md">
+              {heroContent.contactSupport.map((item, i) => (
+                <List.Item key={i}>
+                  <Text size="sm" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.55 }}>
+                    {item}
+                  </Text>
+                </List.Item>
+              ))}
+            </List>
+            <Text fw={600} style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+              {heroContent.contactName}
+            </Text>
+            <Text size="sm" style={{ color: 'var(--rar-text-dim)' }}>
+              {heroContent.contactPhone} ·{' '}
+              <a
+                href={`mailto:${heroContent.contactEmail}`}
+                style={{ color: 'var(--rar-denim)', textDecoration: 'none' }}
               >
-                {item.label}
-              </Text>
-              <Text size="sm" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.55 }}>
-                {item.desc}
-              </Text>
-            </Box>
-          ))}
-        </SimpleGrid>
+                {heroContent.contactEmail}
+              </a>
+            </Text>
+          </Box>
+        </Group>
       </ContentSection>
 
       {/* ── Sticky section nav ─────────────────────────────── */}
@@ -246,7 +265,7 @@ export function LandfillSolarPage() {
               style={{
                 fontFamily: 'Space Grotesk, sans-serif',
                 fontWeight: 600,
-                fontSize: rem(13),
+                fontSize: rem(12),
                 letterSpacing: '0.01em',
               }}
             >
@@ -256,224 +275,208 @@ export function LandfillSolarPage() {
         </Group>
       </Box>
 
-      {/* ── Grouped Accordion Sections ─────────────────────── */}
-      {accordionGroups.map((group, gi) => (
-        <Box
-          key={group.anchor}
-          id={group.anchor}
-          style={{ scrollMarginTop: rem(140) }}
-        >
-          <ContentSection alt={gi % 2 === 0} py={80}>
-            <SectionHeading
-              label={group.label}
-              title={group.title}
-              maw={640}
-            />
+      {/* ── 1. Design / Build as a Service ─────────────────── */}
+      <Box id="design-build" style={{ scrollMarginTop: rem(140) }}>
+        <ContentSection alt py={72}>
+          <SectionHeading title={designBuildContent.title} maw={700} />
+          <Group gap={48} align="flex-start" wrap="wrap">
+            <Stack gap="md" style={{ flex: 1, minWidth: rem(280) }}>
+              {designBuildContent.systemDesc.map((line, i) => (
+                <Text key={i} size="lg" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.7 }}>
+                  {line}
+                </Text>
+              ))}
+              <Title order={3} mt="md" style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '-0.01em' }}>
+                {designBuildContent.serviceTitle}
+              </Title>
+              <Text size="md" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.7 }}>
+                {designBuildContent.serviceBody}
+              </Text>
+              <Text size="md" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.7 }}>
+                {designBuildContent.bomBody}
+              </Text>
+              <List spacing={4}>
+                {designBuildContent.bomItems.map((item, i) => (
+                  <List.Item key={i}>
+                    <Text fw={500} style={{ color: 'var(--rar-text)', fontFamily: 'Space Grotesk, sans-serif' }}>
+                      {item}
+                    </Text>
+                  </List.Item>
+                ))}
+              </List>
+            </Stack>
 
-            {/* Images for Performance & Design section */}
-            {group.anchor === 'performance-design' && (
-              <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg" mb="xl" maw={700}>
-                <TechImage
-                  src="/images/rar-tech-002a.png"
-                  alt="Roll-A-Rack low-profile tilt design"
-                  caption="5° low-profile tilt design — reduced wind loads and higher site density"
-                />
-                <TechImage
-                  src="/images/rar-tech-002b.png"
-                  alt="Roll-A-Rack density comparison"
-                  caption="Row spacing comparison vs. conventional racking"
-                />
-              </SimpleGrid>
-            )}
-
-            {/* Images before Construction & Execution accordion */}
-            {group.anchor === 'construction-execution' && (
-              <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg" mb="xl" maw={700}>
-                <TechImage
-                  src="/images/rar-machine.jpg"
-                  alt="Roll-A-Rack portable roll-forming machine"
-                  caption="Portable roll-forming equipment brought directly to the project site"
-                  maxH={220}
-                />
-                <TechImage
-                  src="/images/rar-tech-001.png"
-                  alt="Roll-A-Rack system overview"
-                  caption="Two-component system: gutter channel + clamp bracket"
-                  maxH={220}
-                />
-              </SimpleGrid>
-            )}
-
-            <Box maw={800}>
-              <FaqAccordion items={group.items} />
+            <Box style={{ flex: '0 0 auto', width: rem(300) }}>
+              <TechImage
+                src="/images/rar-machine.jpg"
+                alt="Roll-A-Rack portable roll-forming machine"
+                caption="Portable roll-forming factory brought to the project site"
+                maxH={240}
+              />
             </Box>
+          </Group>
+        </ContentSection>
+      </Box>
 
-            {/* Detail images after Construction & Execution accordion */}
-            {group.anchor === 'construction-execution' && (
-              <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg" mt="xl" maw={700}>
-                <TechImage
-                  src="/images/rar-tech-003.png"
-                  alt="Roll-A-Rack channel dimensions"
-                  caption="Gutter channel cross-section and dimensions"
-                  maxH={220}
-                />
-                <TechImage
-                  src="/images/rar-tech-005.png"
-                  alt="Roll-A-Rack clamp detail"
-                  caption="Clamp bracket attachment detail"
-                  maxH={220}
-                />
-              </SimpleGrid>
-            )}
-          </ContentSection>
-        </Box>
-      ))}
-
-      {/* ── Deep Proof: Process Comparison ──────────────────── */}
-      <ContentSection py={80}>
-        <Box maw={900}>
-          <SectionHeading
-            label="Build comparison"
-            title="How the build process differs."
-          />
+      {/* ── 2. Traditional vs RAR ───────────────────────────── */}
+      <Box id="build-comparison" style={{ scrollMarginTop: rem(140) }}>
+        <ContentSection py={72}>
+          <SectionHeading title={processComparison.title} maw={700} />
           <ProcessComparison
             traditional={processComparison.traditional}
             rar={processComparison.rar}
             summary={processComparison.summary}
           />
-        </Box>
-      </ContentSection>
+        </ContentSection>
+      </Box>
 
-      {/* ── Deep Proof: Metrics Comparison ──────────────────── */}
-      <ContentSection alt py={80}>
-        <Box maw={900}>
-          <SectionHeading
-            label="Metrics"
-            title="Total installed cost — not just racking cost."
-          />
-          <MetricsComparison rows={metricsComparison} />
-        </Box>
-      </ContentSection>
+      {/* ── 3. 5° Tilt ─────────────────────────────────────── */}
+      <Box id="tilt-density" style={{ scrollMarginTop: rem(140) }}>
+        <ContentSection alt py={72}>
+          <SectionHeading title={densityContent.title} maw={700} />
+          <Group gap={48} align="flex-start" wrap="wrap">
+            <Stack gap="xl" style={{ flex: 1, minWidth: rem(280) }}>
+              <Box>
+                <Title order={3} mb={4} style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '-0.01em' }}>
+                  {densityContent.landTitle}
+                </Title>
+                <Text size="sm" fw={600} mb="sm" style={{ color: 'var(--rar-amber-ink)', fontFamily: 'Space Grotesk, sans-serif' }}>
+                  {densityContent.landSubtitle}
+                </Text>
+                <Text size="md" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.7 }}>
+                  {densityContent.landBody}
+                </Text>
+              </Box>
+              <Box>
+                <Title order={3} mb={4} style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '-0.01em' }}>
+                  {densityContent.ballastTitle}
+                </Title>
+                <Text size="sm" fw={600} mb="sm" style={{ color: 'var(--rar-amber-ink)', fontFamily: 'Space Grotesk, sans-serif' }}>
+                  {densityContent.ballastSubtitle}
+                </Text>
+                <Text size="md" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.7 }}>
+                  {densityContent.ballastBody}
+                </Text>
+              </Box>
+            </Stack>
 
-      {/* ── Deep Proof: Question 36 ────────────────────────── */}
-      <ContentSection py={72}>
-        <Box maw={800}>
-          <SectionHeading
-            label="Procurement context"
-            title="City of Cleveland: Question 36 Response"
-          />
-          <Text
-            size="lg"
-            mb="lg"
-            style={{ color: 'var(--rar-text-dim)', lineHeight: 1.75 }}
-          >
-            {q36Content.summary}
-          </Text>
-          <Accordion
-            variant="separated"
-            radius="md"
-            styles={{
-              item: {
-                backgroundColor: 'var(--rar-panel)',
-                border: '1px solid var(--rar-border)',
-                borderLeft: '3px solid var(--rar-amber)',
-              },
-              control: {
-                fontFamily: 'Space Grotesk, sans-serif',
-                fontWeight: 600,
-                fontSize: rem(16),
-                color: 'var(--rar-text)',
-                padding: `${rem(18)} ${rem(20)}`,
-              },
-              content: {
-                padding: `${rem(4)} ${rem(20)} ${rem(20)}`,
-              },
-              chevron: {
-                color: 'var(--rar-amber)',
-              },
-            }}
-          >
-            <Accordion.Item value="q36">
-              <Accordion.Control icon={<IconInfoCircle size={18} color="var(--rar-amber)" />}>
-                View the Question and Response
-              </Accordion.Control>
-              <Accordion.Panel>
-                <Stack gap="md">
-                  <Box>
-                    <Text size="xs" fw={600} mb={4} style={{ color: 'var(--rar-text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', fontFamily: 'Space Grotesk, sans-serif' }}>
-                      Question
-                    </Text>
-                    <Text size="sm" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.7, fontStyle: 'italic' }}>
-                      {q36Content.question}
-                    </Text>
-                  </Box>
-                  <Box>
-                    <Text size="xs" fw={600} mb={4} style={{ color: 'var(--rar-text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', fontFamily: 'Space Grotesk, sans-serif' }}>
-                      Response
-                    </Text>
-                    <Text size="sm" fw={500} style={{ color: 'var(--rar-text)', lineHeight: 1.7 }}>
-                      {q36Content.response}
-                    </Text>
-                  </Box>
-                </Stack>
-              </Accordion.Panel>
-            </Accordion.Item>
-          </Accordion>
-        </Box>
-      </ContentSection>
-
-      {/* ── Final CTA ──────────────────────────────────────── */}
-      <ContentSection alt py={80}>
-        <Box ta="center" maw={600} mx="auto">
-          <Title
-            order={2}
-            mb="md"
-            style={{ letterSpacing: '-0.015em' }}
-          >
-            {ctaContent.headline}
-          </Title>
-          <Text
-            size="lg"
-            mb="xl"
-            style={{ color: 'var(--rar-text-dim)', lineHeight: 1.65 }}
-          >
-            {ctaContent.subtext}
-          </Text>
-          <Group justify="center" gap="md" mb="xl">
-            <Button
-              component={Link}
-              to="/contact"
-              variant="filled"
-              color="denim"
-              size="lg"
-              rightSection={<IconArrowRight size={18} />}
-              style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600 }}
-            >
-              Request a Technical Discussion
-            </Button>
+            <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md" style={{ flex: '0 0 auto', width: rem(380) }}>
+              <TechImage
+                src="/images/rar-tech-002a.png"
+                alt="5° low-profile tilt design"
+                caption="5° low-profile tilt"
+                maxH={180}
+              />
+              <TechImage
+                src="/images/rar-tech-002b.png"
+                alt="Row spacing comparison"
+                caption="Row spacing vs. conventional"
+                maxH={180}
+              />
+            </SimpleGrid>
           </Group>
-          <Box
-            style={{
-              backgroundColor: 'var(--rar-panel)',
-              border: '1px solid var(--rar-border)',
-              borderRadius: rem(10),
-              padding: `${rem(20)} ${rem(24)}`,
-              display: 'inline-block',
-            }}
-          >
-            <Text fw={600} style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-              {ctaContent.contactName}
-            </Text>
-            <Text size="sm" style={{ color: 'var(--rar-text-dim)' }}>
-              {ctaContent.contactPhone} ·{' '}
-              <a
-                href={`mailto:${ctaContent.contactEmail}`}
-                style={{ color: 'var(--rar-denim)', textDecoration: 'none' }}
+        </ContentSection>
+      </Box>
+
+      {/* ── 4. Fast to Install ──────────────────────────────── */}
+      <Box id="fast-install" style={{ scrollMarginTop: rem(140) }}>
+        <ContentSection py={72}>
+          <SectionHeading title={fastInstallContent.title} maw={640} />
+          <Group gap={48} align="flex-start" wrap="wrap">
+            <Stack gap="md" style={{ flex: 1, minWidth: rem(280) }}>
+              <Text size="lg" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.7 }}>
+                {fastInstallContent.intro}
+              </Text>
+              <List
+                type="ordered"
+                spacing="sm"
+                styles={{ itemWrapper: { color: 'var(--rar-text)' } }}
               >
-                {ctaContent.contactEmail}
-              </a>
-            </Text>
+                {fastInstallContent.steps.map((step, i) => (
+                  <List.Item key={i}>
+                    <Text fw={500} size="md" style={{ color: 'var(--rar-text)', lineHeight: 1.6 }}>
+                      {step}
+                    </Text>
+                  </List.Item>
+                ))}
+              </List>
+            </Stack>
+
+            <Stack gap="md" style={{ flex: '0 0 auto', width: rem(320) }}>
+              <TechImage
+                src="/images/rar-tech-001.png"
+                alt="Two-component system overview"
+                caption="Two-component system: gutter channel + clamp bracket"
+                maxH={180}
+              />
+              <SimpleGrid cols={2} spacing="sm">
+                <TechImage
+                  src="/images/rar-tech-003.png"
+                  alt="Channel dimensions"
+                  caption="Channel cross-section"
+                  maxH={140}
+                />
+                <TechImage
+                  src="/images/rar-tech-005.png"
+                  alt="Clamp bracket detail"
+                  caption="Clamp attachment"
+                  maxH={140}
+                />
+              </SimpleGrid>
+            </Stack>
+          </Group>
+        </ContentSection>
+      </Box>
+
+      {/* ── 5. Metrics ──────────────────────────────────────── */}
+      <Box id="metrics" style={{ scrollMarginTop: rem(140) }}>
+        <ContentSection alt py={72}>
+          <Box maw={900}>
+            <SectionHeading title={metricsTitle} />
+            <MetricsComparison rows={metricsComparison} />
           </Box>
+        </ContentSection>
+      </Box>
+
+      {/* ── 6. Neighborhood Friendly ────────────────────────── */}
+      <Box id="neighborhood" style={{ scrollMarginTop: rem(140) }}>
+        <ContentSection py={72}>
+          <Box maw={700}>
+            <SectionHeading title={neighborhoodContent.title} />
+            <Stack gap="md">
+              {neighborhoodContent.body.map((para, i) => (
+                <Text key={i} size="lg" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.7 }}>
+                  {para}
+                </Text>
+              ))}
+            </Stack>
+          </Box>
+        </ContentSection>
+      </Box>
+
+      {/* ── Bottom CTA ──────────────────────────────────────── */}
+      <ContentSection alt py={64}>
+        <Box ta="center" maw={560} mx="auto">
+          <Title order={3} mb="sm" style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '-0.01em' }}>
+            Discuss how Roll-A-Rack can support your bid
+          </Title>
+          <Text size="md" mb="xl" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.65 }}>
+            {heroContent.contactName} &middot; {heroContent.contactPhone} &middot;{' '}
+            <a href={`mailto:${heroContent.contactEmail}`} style={{ color: 'var(--rar-denim)', textDecoration: 'none' }}>
+              {heroContent.contactEmail}
+            </a>
+          </Text>
+          <Button
+            component={Link}
+            to="/contact"
+            variant="filled"
+            color="denim"
+            size="lg"
+            rightSection={<IconArrowRight size={18} />}
+            style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600 }}
+          >
+            Request a Technical Discussion
+          </Button>
         </Box>
       </ContentSection>
     </>

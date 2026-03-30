@@ -1,5 +1,11 @@
 import { Accordion, List, Text, rem } from '@mantine/core';
-import type { AccordionItemData } from '../../content/landfillSolar';
+
+export interface AccordionItemData {
+  value: string;
+  title: string;
+  body: string[];
+  bullets?: string[];
+}
 
 interface FaqAccordionProps {
   items: AccordionItemData[];

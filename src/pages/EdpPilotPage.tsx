@@ -203,8 +203,21 @@ export function EdpPilotPage() {
 
       <ContentSection alt py={72}>
         <Card padding="xl" radius="md" withBorder style={{ backgroundColor: 'var(--rar-bg)' }}>
-          <SectionHeading title={whyEdp.title} subtitle={whyEdp.intro} maw={640} />
-          <BulletList items={whyEdp.bullets} />
+          <SectionHeading title={whyEdp.title} maw={640} />
+          <Stack gap="lg" maw={720} mt={-8}>
+            <Text size="lg" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.65 }}>
+              {whyEdp.lead}
+            </Text>
+            <Stack gap="sm">
+              <Text size="lg" fw={600} style={{ color: 'var(--rar-text)', lineHeight: 1.55 }}>
+                {whyEdp.bridge}
+              </Text>
+              <BulletList items={whyEdp.bullets} />
+            </Stack>
+            <Text size="lg" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.65 }}>
+              {whyEdp.closing}
+            </Text>
+          </Stack>
         </Card>
       </ContentSection>
 

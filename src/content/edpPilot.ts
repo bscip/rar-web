@@ -76,15 +76,19 @@ export const metrics = {
   ],
 } as const;
 
-/** Placeholder copy — replace when ready. */
 export const whyEdp = {
   title: 'Why Roll-A-Rack and EDP Make Sense',
-  intro: 'This pilot is intended to validate performance under real deployment conditions.',
+  lead:
+    "EDP's renewable portfolio operates at a scale where small improvements in deployment efficiency, site flexibility, and land utilization can compound meaningfully across projects.",
+  bridge: 'Roll-A-Rack is designed to be evaluated in exactly that context:',
   bullets: [
-    'First-time deployment at project scale',
-    'Site-specific variability and constraints',
-    'Operator workflow and efficiency',
+    'where conventional spacing wastes usable land',
+    'where staging and transport create friction',
+    'where field adaptability matters',
+    'where pilot validation must lead with measurable execution data',
   ],
+  closing:
+    'For EDP, the opportunity is not just a new racking system. It is a test of whether constrained or logistically difficult sites can be deployed more efficiently with a different field architecture.',
 } as const;
 
 export const relatedExample = {

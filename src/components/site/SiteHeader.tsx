@@ -24,11 +24,20 @@ const NAV_LINKS = [
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpened, { open: openDrawer, close: closeDrawer }] = useDisclosure(false);
-  const routerState = useRouterState();
-  const isHome = routerState.location.pathname === '/';
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isHome = pathname === '/';
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    // Hysteresis avoids toggling at the threshold when scroll position oscillates (layout shift, subpixel scroll).
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled((prev) => {
+        if (y < 24) return false;
+        if (y > 56) return true;
+        return prev;
+      });
+    };
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);

@@ -32,6 +32,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Reduces layout shift when the scrollbar appears/disappears (avoids scroll/resize feedback loops). */
+  scrollbar-gutter: stable;
 }
 
 body {

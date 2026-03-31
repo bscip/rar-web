@@ -55,17 +55,6 @@ export const systemSteps = [
   },
 ] as const;
 
-export const bestFit = {
-  title: 'Best-fit project types',
-  intro: 'Roll-A-Rack is most effective where land, staging, or ground impact are constraints.',
-  bullets: [
-    'Landfills and capped sites',
-    'Brownfields and previously developed land',
-    'Sites with limited staging area',
-    'Projects facing land-use or permitting pressure',
-  ],
-} as const;
-
 export const pilotPlan = {
   title: 'Proposed pilot with EDP',
   items: [
@@ -87,23 +76,15 @@ export const metrics = {
   ],
 } as const;
 
-export const risks = {
-  title: 'What the pilot is designed to validate',
+/** Placeholder copy — replace when ready. */
+export const whyEdp = {
+  title: 'Why Roll-A-Rack and EDP Make Sense',
   intro: 'This pilot is intended to validate performance under real deployment conditions.',
   bullets: [
     'First-time deployment at project scale',
     'Site-specific variability and constraints',
     'Operator workflow and efficiency',
   ],
-} as const;
-
-export const closing = {
-  title: 'Next step',
-  body: [
-    'Identify 1–2 candidate sites where land constraints or staging complexity are limiting deployment efficiency.',
-    'Roll-A-Rack will deploy a pilot system and provide measurable performance data.',
-  ],
-  ctaLabel: 'Discuss Pilot Sites',
 } as const;
 
 export const relatedExample = {

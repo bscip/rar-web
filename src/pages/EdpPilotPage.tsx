@@ -5,33 +5,30 @@ import {
   Box,
   Button,
   Card,
-  Flex,
-  Group,
   Image,
   List,
   SimpleGrid,
   Stack,
   Text,
-  Title,
+  VisuallyHidden,
   rem,
 } from '@mantine/core';
 import { PageHero } from '../components/site/PageHero';
 import { SectionHeading } from '../components/site/SectionHeading';
 import { ContentSection } from '../components/site/ContentSection';
 import {
-  bestFit,
-  closing,
   hero,
   metrics,
   pilotPlan,
   problem,
   relatedExample,
-  risks,
   systemSteps,
+  whyEdp,
 } from '../content/edpPilot';
 
-/** Native asset ratio (500×354). Keeps frames consistent without cropping. */
+/** Raster assets are 500×354; never scale beyond this or they soften. */
 const EDP_IMAGE_RATIO = 500 / 354;
+const EDP_IMAGE_MAX_W = 500;
 
 function EdpFigure({
   src,
@@ -43,7 +40,8 @@ function EdpFigure({
   const [failed, setFailed] = useState(false);
 
   return (
-    <AspectRatio ratio={EDP_IMAGE_RATIO} maw={rem(500)} w="100%" mx={{ base: 'auto', md: 0 }}>
+    <Box style={{ width: '100%', maxWidth: EDP_IMAGE_MAX_W, marginLeft: 'auto', marginRight: 'auto' }}>
+      <AspectRatio ratio={EDP_IMAGE_RATIO} w="100%">
       <Box
         h="100%"
         w="100%"
@@ -79,6 +77,7 @@ function EdpFigure({
         )}
       </Box>
     </AspectRatio>
+    </Box>
   );
 }
 
@@ -89,29 +88,6 @@ function BulletList({ items }: { items: readonly string[] }) {
         <List.Item key={line}>{line}</List.Item>
       ))}
     </List>
-  );
-}
-
-function StepIndex({ n }: { n: number }) {
-  return (
-    <Flex
-      align="center"
-      justify="center"
-      flex="none"
-      style={{
-        width: rem(32),
-        height: rem(32),
-        borderRadius: rem(6),
-        border: '1px solid var(--rar-border)',
-        backgroundColor: 'var(--rar-panel)',
-        fontFamily: 'Space Grotesk, sans-serif',
-        fontSize: rem(14),
-        fontWeight: 700,
-        color: 'var(--rar-amber)',
-      }}
-    >
-      {n}
-    </Flex>
   );
 }
 
@@ -147,7 +123,13 @@ export function EdpPilotPage() {
             <Stack gap="md" maw={560}>
               <BulletList items={problem.bullets} />
             </Stack>
-            <Box style={{ justifySelf: 'stretch' }}>
+            <Box
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
+              }}
+            >
               <EdpFigure src={problem.imageSrc} alt={problem.imageAlt} />
             </Box>
           </SimpleGrid>
@@ -156,7 +138,7 @@ export function EdpPilotPage() {
 
       <ContentSection alt py={72}>
         <SectionHeading title="How Roll-A-Rack works on site" maw={720} />
-        <Stack gap="xl" mt={-8}>
+        <SimpleGrid cols={{ base: 1, md: 2, xl: 3 }} spacing="lg" mt={-8}>
           {systemSteps.map((step, index) => (
             <Box
               key={step.title}
@@ -165,34 +147,23 @@ export function EdpPilotPage() {
                 borderRadius: rem(12),
                 backgroundColor: 'var(--rar-bg)',
                 padding: rem(24),
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
-              <SimpleGrid cols={{ base: 1, md: 2 }} spacing={{ base: 'lg', md: 'xl' }} verticalSpacing="lg">
-                <Box>
-                  <EdpFigure src={step.imageSrc} alt={step.imageAlt} />
-                </Box>
-                <Stack gap="md" justify="center" style={{ minWidth: 0 }}>
-                  <Group gap="md" wrap="nowrap" align="flex-start">
-                    <StepIndex n={index + 1} />
-                    <Title order={3} style={{ letterSpacing: '-0.02em', fontSize: rem(20), lineHeight: 1.3 }}>
-                      {step.title}
-                    </Title>
-                  </Group>
-                  <Text size="sm" pl={{ md: rem(48) }} style={{ color: 'var(--rar-text-dim)', lineHeight: 1.65 }}>
-                    {step.body}
-                  </Text>
-                </Stack>
-              </SimpleGrid>
+              {/* Copy lives in the image assets; hidden text keeps screen readers in sync. */}
+              <VisuallyHidden>
+                <span>
+                  Step {index + 1}: {step.title}. {step.body}
+                </span>
+              </VisuallyHidden>
+              <Box style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <EdpFigure src={step.imageSrc} alt="" />
+              </Box>
             </Box>
           ))}
-        </Stack>
-      </ContentSection>
-
-      <ContentSection py={72}>
-        <Card padding="xl" radius="md" withBorder style={{ backgroundColor: 'var(--rar-bg)' }}>
-          <SectionHeading title={bestFit.title} subtitle={bestFit.intro} maw={640} />
-          <BulletList items={bestFit.bullets} />
-        </Card>
+        </SimpleGrid>
       </ContentSection>
 
       <ContentSection alt py={72}>
@@ -232,26 +203,8 @@ export function EdpPilotPage() {
 
       <ContentSection alt py={72}>
         <Card padding="xl" radius="md" withBorder style={{ backgroundColor: 'var(--rar-bg)' }}>
-          <SectionHeading title={risks.title} subtitle={risks.intro} maw={640} />
-          <BulletList items={risks.bullets} />
-        </Card>
-      </ContentSection>
-
-      <ContentSection py={72}>
-        <Card padding="xl" radius="md" withBorder style={{ backgroundColor: 'var(--rar-bg)' }}>
-          <SectionHeading title={closing.title} maw={560} />
-          <Stack gap="md" mt={-8}>
-            {closing.body.map((para) => (
-              <Text key={para} size="lg" style={{ color: 'var(--rar-text-dim)', lineHeight: 1.65 }}>
-                {para}
-              </Text>
-            ))}
-            <Box pt="sm">
-              <Button component={Link} to="/contact" size="md" variant="filled">
-                {closing.ctaLabel}
-              </Button>
-            </Box>
-          </Stack>
+          <SectionHeading title={whyEdp.title} subtitle={whyEdp.intro} maw={640} />
+          <BulletList items={whyEdp.bullets} />
         </Card>
       </ContentSection>
 
